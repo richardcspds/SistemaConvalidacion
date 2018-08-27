@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Convalida:</strong>
+  <%= @convalidacion.convalida %>
+</p>
+
+<p>
+  <strong>Asignatura:</strong>
+  <%= @convalidacion.asignatura %>
+</p>
+
+<%= link_to 'Edit', edit_convalidacion_path(@convalidacion) %> |
+<%= link_to 'Back', convalidacions_path %>

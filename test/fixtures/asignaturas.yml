@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  creditos: 1
+  pensum: one
+
+two:
+  nombre: MyString
+  creditos: 1
+  pensum: two

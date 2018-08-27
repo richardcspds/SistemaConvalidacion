@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Asignatura:</strong>
+  <%= @relacion.asignatura %>
+</p>
+
+<p>
+  <strong>Convalida:</strong>
+  <%= @relacion.convalida %>
+</p>
+
+<%= link_to 'Edit', edit_relacion_path(@relacion) %> |
+<%= link_to 'Back', relacions_path %>

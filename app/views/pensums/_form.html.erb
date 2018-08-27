@@ -1,0 +1,38 @@
+<%= form_with(model: pensum, local: true) do |form| %>
+  <% if pensum.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pensum.errors.count, "error") %> prohibited this pensum from being saved:</h2>
+
+      <ul>
+      <% pensum.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.date_select :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :universidad_id %>
+    <%= form.collection_select :universidad_id, Universidad.order(:nombre), :id, :nombre, include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :carrera_id %>
+    <%= form.grouped_collection_select :carrera_id, Universidad.order(:nombre), :carreras, :nombre, :id,  :nombre , {:include_blank => true} %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

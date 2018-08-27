@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @asignatura.nombre %>
+</p>
+
+<p>
+  <strong>Clave:</strong>
+  <%= @asignatura.clave %>
+</p>
+
+<p>
+  <strong>Creditos:</strong>
+  <%= @asignatura.creditos %>
+</p>
+
+<p>
+  <strong>Universidad:</strong>
+  <%= @asignatura.pensum.carrera.universidad.nombre %>
+</p>
+
+<p>
+  <strong>Carrera:</strong>
+  <%= @asignatura.pensum.carrera.nombre %>
+</p>
+
+<p>
+  <strong>Pensum:</strong>
+  <%= @asignatura.pensum.nombre %>
+</p>
+
+<%= link_to 'Edit', edit_asignatura_path(@asignatura) %> |
+<%= link_to 'Back', asignaturas_path %>
+

@@ -1,0 +1,112 @@
+<%= form_with(model: convalidacion, local: true) do |form| %>
+  <% if convalidacion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(convalidacion.errors.count, "error") %> prohibited this convalidacion from being saved:</h2>
+
+      <ul>
+      <% convalidacion.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Información General</h3>
+    </div>
+    <div class="panel-body">
+      <form>
+        <div class="form-inline">
+          <label for="estudianteNombres">Nombres</label>
+          <input type="text" class="form-control" id="estudianteNombrestxt" placeholder="Escribir Nombres" >
+          <label for="estudianteApellidos">Apellidos</label>
+          <input type="text" class="form-control" id="estudianteApellidostxt" placeholder="Escribir Apellidos" >
+          <label for="estudianteMatriculas">Matricula</label>
+          <input type="text" class="form-control" id="estudianteMatriculatxt" placeholder="Escribir Matricula" value:"" >
+        </div>
+
+
+        <div class="form-inline">
+          <div class="form-group">
+            <div class="page-header">
+              <h3><small>Información local</small></h3>
+            </div>
+
+            <div class="form-inline">
+              <%= form.label :universidad_home_id %>
+              <%= form.collection_select :universidad_home_id, Universidad.all, :id, :nombre, {:selected => 'UTESA', :disabled => 'disabled'} %>
+              <div class="form-group">
+                <%= form.label :carrera_home_id %>
+                <%= form.grouped_collection_select :carrera_home_id, Universidad.order(:nombre), :carreras, :nombre, :id,  :nombre , {:include_blank => true} %>
+              </div>
+              <div class="form-group">
+                <%= form.label :pensum_home_id %>
+                <%= form.grouped_collection_select :pensum_home_id, Carrera.order(:nombre), :pensums, :nombre, :id,  :nombre , {:include_blank => true} %>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="page-header">
+              <h3><small>Información de procedencia</small></h3>
+            </div>
+
+            <div class="form-inline">
+              <div class="form-group">
+                <%= form.label :universidad_procedencia_id %>
+                <%= form.collection_select :universidad_procedencia_id, Universidad.order(:nombre), :id, :nombre, :include_blank => true %>
+              </div>
+              <div class="form-group">
+                <%= form.label :carrera_procedencia_id %>
+                <%= form.grouped_collection_select :carrera_procedencia_id, Universidad.order(:nombre), :carreras, :nombre, :id,  :nombre , {:include_blank => true} %>
+              </div>
+              <div class="form-group">
+                <%= form.label :pensum_procedencia_id %>
+                <%= form.grouped_collection_select :pensum_procedencia_id, Carrera.order(:nombre), :pensums, :nombre, :id, :nombre, {:multiple => true, :include_blank => true} %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </form>
+    </div>
+  </div>
+
+  <div class="form-inline">
+    <div class="form-group">
+      <label for="asignaturasHome">Asignaturas Locales</label>
+      <div class="form-inline">
+        <div class="field">
+          <select multiple class="list-group" id="asignaturas_home_id">
+          	<% @asignaturas.each do |asignatura| %>
+            	<option class="list-group-item"><%= asignatura.clave %> | <%= asignatura.nombre %> - CR: <%= asignatura.creditos %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="asignaturasHome">Asignaturas de procedencia</label>
+      <div class="form-inline">
+        <div class="field">
+          <select multiple class="list-group" id="asignaturas_proc_id">
+          	<% @asignaturas.each do |asignatura| %>
+            	<option class="list-group-item"><%= asignatura.clave %> | <%= asignatura.nombre %> - CR: <%= asignatura.creditos %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= form.label :convalida %>
+    <%= form.check_box :convalida %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
