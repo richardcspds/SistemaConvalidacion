@@ -119,7 +119,7 @@
           <label for="asignatura_b_procedencia_id">Asignatura</label>
           <%= form.grouped_collection_select :asignatura_b_procedencia_id, Pensum.order(:nombre), :asignaturas, :nombre, :id,  :nombre , {:include_blank => true} %>
           <label for="asignatura_b_procedencia_creditos_id">creditos</label>
-          <input type="text" class="form-control" id="asignatura_procedencia_b_creditos_id" value='#'>
+          <input type="text" class="form-control" id="asignatura_b_procedencia_creditos_id" value='#'>
         </div>
       </form>
     </div>
@@ -135,11 +135,7 @@
     <%= form.submit %>
   </div>
 
-  <%= javascript_tag do %>
-    window.asignaturasURL = <%= j asignaturas_url %>;
-    window.asignaturas = <%= raw Asignatura.to_json %>
-  <% end %>
-
+ 
   <div id= 'asignaturas_details_id' data_asignaturas= "<%= @asignaturas %>">
   </div>
 <% end %>

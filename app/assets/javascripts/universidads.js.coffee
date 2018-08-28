@@ -2,8 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery ->
-    $('#universidad_info_tables_pensums_id').hide()
-    $('#universidad_info_tables_asignaturas_id').hide()
+    # $('#universidad_info_tables_pensums_id').hide()
+    # $('#universidad_info_tables_asignaturas_id').hide()
     # if ($('#universidad_ver_select_list_id').visible(true)){
     #     options = document.getElementById("ver_select_list_id").getElementByTagName("li")
     #     for (i=0, i< options.length, i++){
