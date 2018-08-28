@@ -58,7 +58,7 @@
           <label for="asignatura_local_id">Asignatura</label>
           <%= form.grouped_collection_select :asignatura_local_id, Pensum.order(:nombre), :asignaturas, :nombre, :id,  :nombre , {:include_blank => true} %>
           <label for="asignatura_local_creditos_id">creditos</label>
-          <input type="text" class="form-control" id="asignatura_local_creditos_id" value='#' readonly>
+          <input type="text" class="form-control" id="asignatura_local_creditos_id" value='' readonly>
         </div>
       </form>
     </div>
@@ -112,30 +112,23 @@
           <label for="asignatura_a_procedencia_id">Asignatura</label>
           <%= form.grouped_collection_select :asignatura_a_procedencia_id, Pensum.order(:nombre), :asignaturas, :nombre, :id,  :nombre , {:include_blank => true} %>
           <label for="asignatura_a_procedencia_creditos_id">creditos</label>
-          <input type="text" class="form-control" id="asignatura_a_procedencia_creditos_id" value='#'>
+          <input type="text" class="form-control" id="asignatura_a_procedencia_creditos_id" value=''>
         </div>
 
         <div class="form-inline">
           <label for="asignatura_b_procedencia_id">Asignatura</label>
           <%= form.grouped_collection_select :asignatura_b_procedencia_id, Pensum.order(:nombre), :asignaturas, :nombre, :id,  :nombre , {:include_blank => true} %>
           <label for="asignatura_b_procedencia_creditos_id">creditos</label>
-          <input type="text" class="form-control" id="asignatura_b_procedencia_creditos_id" value='#'>
+          <input type="text" class="form-control" id="asignatura_b_procedencia_creditos_id" value=''>
         </div>
       </form>
     </div>
   </div>
 
+  
+  <input id="crear_realacion_button_id" name="commit" type="submit" value="Crear relación" />
 
-  <div class="field">
-    <%= form.label :convalida %>
-    <%= form.check_box :convalida  %>
-  </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-
- 
   <div id= 'asignaturas_details_id' data_asignaturas= "<%= @asignaturas %>">
   </div>
 <% end %>

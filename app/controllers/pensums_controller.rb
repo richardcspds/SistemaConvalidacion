@@ -14,7 +14,6 @@ class PensumsController < ApplicationController
 
   # GET /pensums/new
   def new
-    @universidad = Universidad.all
     @pensum = Pensum.new
   end
 

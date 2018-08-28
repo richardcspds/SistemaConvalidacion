@@ -1,5 +1,6 @@
 class RelacionsController < ApplicationController
   before_action :set_relacion, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /relacions
   # GET /relacions.json
@@ -69,6 +70,10 @@ class RelacionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def relacion_params
-      params.require(:relacion).permit(:asignatura, :convalida)
+      params.require(:relacion).permit(:asignatura_home_id, :asignatura_a_procedencia_id, :asignatura_b_procedencia_id)
+    end
+
+    def crear_relacion?
+      params[:commit] == 'Crear'
     end
 end

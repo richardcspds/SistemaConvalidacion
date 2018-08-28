@@ -18,6 +18,9 @@ jQuery ->
     asignatura_b_procedencia_selector = $('#relacion_asignatura_b_procedencia_id')
     asignatura_b_creditos_procedencia_textbox =  $('#asignatura_b_procedencia_creditos_id')
 
+    #buttons
+    crear_relacion_button = $('#crear_realacion_button_id')
+
     # when universidad selection changes
     universidad_home_selector.change ->
 
@@ -25,7 +28,7 @@ jQuery ->
         carreras_home_selector.empty()
         pensum_home_selector.empty()
         asignatura_home_selector.empty()
-        asignatura_creditos_home_textbox.val('#')
+        asignatura_creditos_home_textbox.val('')
 
         universidad_id = universidad_home_selector.val()   
 
@@ -49,7 +52,7 @@ jQuery ->
 
         pensum_home_selector.empty()
         asignatura_home_selector.empty()
-        asignatura_creditos_home_textbox.val('#')
+        asignatura_creditos_home_textbox.val('')
 
         carrera_id = carreras_home_selector.val()
 
@@ -70,7 +73,7 @@ jQuery ->
 
     pensum_home_selector.change ->
         asignatura_home_selector.empty()
-        asignatura_creditos_home_textbox.val('#')
+        asignatura_creditos_home_textbox.val('')
 
         pensum_id = pensum_home_selector.val()
 
@@ -90,7 +93,7 @@ jQuery ->
         });
         
     asignatura_home_selector.change ->
-        asignatura_creditos_home_textbox.val('#')
+        asignatura_creditos_home_textbox.val('')
         asignatura_id = asignatura_home_selector.val()
         console.log(asignatura_id + 'asignatura current')
 
@@ -114,8 +117,8 @@ jQuery ->
         pensum_procedencia_selector.empty()
         asignatura_a_procedencia_selector.empty()
         asignatura_b_procedencia_selector.empty()
-        asignatura_a_creditos_procedencia_textbox.val('#')
-        asignatura_b_creditos_procedencia_textbox.val('#')
+        asignatura_a_creditos_procedencia_textbox.val('')
+        asignatura_b_creditos_procedencia_textbox.val('')
 
         universidad_id = universidad_procedencia_selector.val()   
         
@@ -140,8 +143,8 @@ jQuery ->
             pensum_procedencia_selector.empty()
             asignatura_a_procedencia_selector.empty()
             asignatura_b_procedencia_selector.empty()
-            asignatura_a_creditos_procedencia_textbox.val('#')
-            asignatura_b_creditos_procedencia_textbox.val('#')
+            asignatura_a_creditos_procedencia_textbox.val('')
+            asignatura_b_creditos_procedencia_textbox.val('')
 
             carrera_id = carreras_procedencia_selector.val()
 
@@ -163,8 +166,8 @@ jQuery ->
     pensum_procedencia_selector.change ->
             asignatura_a_procedencia_selector.empty()
             asignatura_b_procedencia_selector.empty()
-            asignatura_a_creditos_procedencia_textbox.val('#')
-            asignatura_b_creditos_procedencia_textbox.val('#')
+            asignatura_a_creditos_procedencia_textbox.val('')
+            asignatura_b_creditos_procedencia_textbox.val('')
 
             pensum_id = pensum_procedencia_selector.val()
 
@@ -187,7 +190,7 @@ jQuery ->
             });
             
     asignatura_a_procedencia_selector.change ->
-            asignatura_a_creditos_procedencia_textbox.val('#')
+            asignatura_a_creditos_procedencia_textbox.val('')
 
             asignatura_id = asignatura_a_procedencia_selector.val()
 
@@ -205,7 +208,7 @@ jQuery ->
             });
 
     asignatura_b_procedencia_selector.change ->
-                asignatura_b_creditos_procedencia_textbox.val('#')
+                asignatura_b_creditos_procedencia_textbox.val('')
 
                 asignatura_id = asignatura_b_procedencia_selector.val()
 
@@ -221,6 +224,10 @@ jQuery ->
                     )
                     cleanEmptyOptions ->                  
                 });
+
+    crear_relacion_button.click ->
+        tipo_relacion = validateRelacionType asignatura_creditos_home_textbox, asignatura_a_creditos_procedencia_textbox, asignatura_b_creditos_procedencia_textbox
+        processSubmit tipo_relacion, asignatura_home_selector.val(), asignatura_a_procedencia_selector.val(), asignatura_b_procedencia_selector.val()
         
 
 # functions
@@ -229,3 +236,48 @@ cleanEmptyOptions = ->
     $('select option').filter(->
             !@value or $.trim(@value).length == 0 or $.trim(@text).length == 0
         ).remove()
+
+validateRelacionType = (creditsH, creditsA, creditsB) ->    
+
+    # 1-1 relation
+    if creditsH.val() and creditsA.val() and creditsB.val() == ''
+        # verify 1-1 has at least -1 credits from home asignatura
+        if creditsA.val() >= creditsH.val() - 1
+            # if do return type
+            return '1-1'
+        else
+            # else notify error
+            return 'Creditos no suficientes'        
+    # 1-2 relation
+    else if creditsH.val() and creditsA.val() and creditsB.val()
+        console.log("1-2 relation")
+        if Number(creditsA.val()) + Number(creditsB.val()) >= Number(creditsH.val())
+            return '1-2'            
+        else
+            return 'Creditos no suficientes'
+    else
+        return 'Completar campo de credito requerido'
+
+processSubmit = (type, asignatura_h_id, asignatura_a_id, asignatura_b_id) ->
+    jsonRelacion = '{asignatura_home_id: "' + asignatura_h_id + '", asignatura_a_procedencia_id: "' + asignatura_a_id + '", asignatura_b_procedencia_id: "' \
+    + asignatura_b_id + '"}'
+    jsonRelacion2 = '{asignatura_home_id: "2", asignatura_a_procedencia_id: "5", asignatura_b_procedencia_id: "4"}'
+    console.log(JSON.stringify(jsonRelacion))
+    console.log(JSON.stringify(jsonRelacion2))
+
+    if type == '1-1' or type == '1-2'
+        $.ajax({
+            dataType: "json",
+            url: '/relacions',
+            type: 'POST'
+            data: JSON.stringify(jsonRelacion)
+            success: () ->
+                alert('Relacion creada con exito')
+                cleanEmptyOptions ->                  
+        });
+    else
+        alert(type)
+
+
+# jsonRelacion = '{asignatura_home_id: "' + asignatura_home_selector.val() + '", asignatura_a_procedencia_id: "' + asignatura_a_procedencia_selector.val() + '", asignatura_b_procedencia_id: "'
+#         + asignatura_b_procedencia_selector.val() +'"}'

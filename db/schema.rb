@@ -17,9 +17,11 @@ ActiveRecord::Schema.define(version: 2018_08_22_193610) do
     t.string "clave"
     t.integer "creditos"
     t.integer "universidad_id"
+    t.integer "carrera_id"
     t.integer "pensum_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["carrera_id"], name: "index_asignaturas_on_carrera_id"
     t.index ["pensum_id"], name: "index_asignaturas_on_pensum_id"
     t.index ["universidad_id"], name: "index_asignaturas_on_universidad_id"
   end
@@ -33,15 +35,17 @@ ActiveRecord::Schema.define(version: 2018_08_22_193610) do
   end
 
   create_table "convalidacions", force: :cascade do |t|
-    t.boolean "convalida"
-    t.integer "asignatura_id"
+    t.date "fecha_realizacion"
+    t.string "universidad_procedencia"
+    t.integer "estudiante_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["asignatura_id"], name: "index_convalidacions_on_asignatura_id"
+    t.index ["estudiante_id"], name: "index_convalidacions_on_estudiante_id"
   end
 
   create_table "estudiantes", force: :cascade do |t|
-    t.string "nombre"
+    t.string "nombres"
+    t.string "apellidos"
     t.string "matricula"
     t.string "correo"
     t.string "telefono"
@@ -78,14 +82,15 @@ ActiveRecord::Schema.define(version: 2018_08_22_193610) do
   end
 
   create_table "relacions", force: :cascade do |t|
-    t.integer "asignatura_home"
-    t.integer "asignatura_proc"
-    t.integer "asignatura_proc_extra"
+    t.integer "asignatura_home_id"
+    t.integer "asignatura_a_procedencia_id"
+    t.integer "asignatura_b_procedencia_id" null: true
     t.integer "asignatura_id"
-    t.boolean "convalida"
+    t.integer "convalidacion_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["asignatura_id"], name: "index_relacions_on_asignatura_id"
+    t.index ["convalidacion_id"], name: "index_relacions_on_convalidacion_id"
   end
 
   create_table "universidads", force: :cascade do |t|
