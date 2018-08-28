@@ -1,6 +1,5 @@
 class RelacionsController < ApplicationController
   before_action :set_relacion, only: [:show, :edit, :update, :destroy]
-  skip_before_action :verify_authenticity_token
 
   # GET /relacions
   # GET /relacions.json

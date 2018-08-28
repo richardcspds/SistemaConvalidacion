@@ -7,8 +7,8 @@ jQuery ->
     universidad_home_selector = $('#relacion_universidad_local_id')
     carreras_home_selector = $('#relacion_carrera_local_id')
     pensum_home_selector = $('#relacion_pensum_local_id')
-    asignatura_home_selector = $('#relacion_asignatura_local_id')
-    asignatura_creditos_home_textbox =  $('#asignatura_local_creditos_id')
+    asignatura_home_selector = $('#relacion_asignatura_home_id')
+    asignatura_creditos_home_textbox =  $('#asignatura_home_creditos_id')
 
     universidad_procedencia_selector = $('#relacion_universidad_procedencia_id')
     carreras_procedencia_selector = $('#relacion_carrera_procedencia_id')
