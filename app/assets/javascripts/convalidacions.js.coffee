@@ -29,10 +29,11 @@ jQuery ->
       type: 'GET'
       success: (data) ->
         $.each(data, (i, nombre) ->    
-          if (this.universidad_id.toString() == universidad_id)         
-            carreras_home_selector.append('<option value="' + this.universidad_id + '">' + this.nombre + '<option>')
-            console.log('added option ' + this.nombre + ' to selector with id ' + this.universidad_id)        
+          if (@universidad_id.toString() == universidad_id)         
+            carreras_home_selector.append('<option value="' + @id + '">' + @nombre + '<option>')
+            console.log('added option ' + @nombre + ' to selector with value' + @id)        
         )
+        cleanEmptyOptions ->
         #set the carreras selector to blank
         carreras_home_selector.prop("selectedIndex", -1)   
       });
@@ -49,10 +50,11 @@ jQuery ->
       type: 'GET'
       success: (data) ->
         $.each(data, (i, nombre) ->  
-          if (this.carrera_id.toString() == carrera_id)          
-            pensum_home_selector.append('<option value="' + this.carrera_id + '">' + this.nombre + '<option>')
-            console.log('added option ' + this.nombre + ' to selector with id ' + this.carrera_id)        
+          if (@carrera_id.toString() == carrera_id)          
+            pensum_home_selector.append('<option value="' + @id + '">' + @nombre + '<option>')
+            console.log('added option ' + @nombre + ' to selector with id ' + @id)        
         )
+        cleanEmptyOptions ->
         #set the pensum selector to blank
         pensum_home_selector.prop("selectedIndex", -1)   
       });
@@ -71,10 +73,11 @@ jQuery ->
       type: 'GET'
       success: (data) ->
         $.each(data, (i, nombre) ->    
-          if (this.universidad_id.toString() == universidad_id)                       
-            carreras_procedencia_selector.append('<option value="' + this.universidad_id + '">' + this.nombre + '<option>')
-            console.log('added option ' + this.nombre + ' to selector with id ' + this.universidad_id)        
+          if (@universidad_id.toString() == universidad_id)                       
+            carreras_procedencia_selector.append('<option value="' + @id + '">' + @nombre + '<option>')
+            console.log('added option ' + @nombre + ' to selector with id ' + @id)        
         )
+        cleanEmptyOptions ->
         #set the carreras selector to blank
         carreras_procedencia_selector.prop("selectedIndex", -1)   
       });
@@ -90,10 +93,20 @@ jQuery ->
       type: 'GET'
       success: (data) ->
         $.each(data, (i, nombre) ->  
-          if (this.carrera_id.toString() == carrera_id)          
-            pensum_procedencia_selector.append('<option value="' + this.carrera_id + '">' + this.nombre + '<option>')
-            console.log('added option ' + this.nombre + ' to selector with id ' + this.carrera_id)        
+          if (@carrera_id.toString() == carrera_id)          
+            pensum_procedencia_selector.append('<option value="' + @id + '">' + @nombre + '<option>')
+            console.log('added option ' + @nombre + ' to selector with id ' + @id)        
         )
+        cleanEmptyOptions ->
         #set the pensum selector to blank
         pensum_procedencia_selector.prop("selectedIndex", -1)   
       });    
+
+
+
+
+
+cleanEmptyOptions = ->
+    $('select option').filter(->
+            !@value or $.trim(@value).length == 0 or $.trim(@text).length == 0
+        ).remove()

@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require datatables
 //= require bootstrap-sprockets
 //= require dataTables/jquery.dataTables
 //= require rails-ujs

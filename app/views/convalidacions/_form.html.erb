@@ -35,7 +35,7 @@
 
             <div class="form-inline">
               <%= form.label :universidad_home_id %>
-              <%= form.collection_select :universidad_home_id, Universidad.all, :id, :nombre, {:selected => 'UTESA', :disabled => 'disabled'} %>
+              <%= form.collection_select :universidad_home_id, Universidad.all, :id, :nombre, {:selected => 'UTESA', :include_blank => true} %>
               <div class="form-group">
                 <%= form.label :carrera_home_id %>
                 <%= form.grouped_collection_select :carrera_home_id, Universidad.order(:nombre), :carreras, :nombre, :id,  :nombre , {:include_blank => true} %>

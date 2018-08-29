@@ -19,7 +19,7 @@ jQuery ->
     asignatura_b_creditos_procedencia_textbox =  $('#asignatura_b_procedencia_creditos_id')
 
     #buttons
-    crear_relacion_button = $('#crear_realacion_button_id')
+    crear_relacion_button = $('#crear_relacion_button_id')
 
     # when universidad selection changes
     universidad_home_selector.change ->
@@ -226,8 +226,9 @@ jQuery ->
                 });
 
     crear_relacion_button.click ->
-        tipo_relacion = validateRelacionType asignatura_creditos_home_textbox, asignatura_a_creditos_procedencia_textbox, asignatura_b_creditos_procedencia_textbox
-        processSubmit tipo_relacion, asignatura_home_selector.val(), asignatura_a_procedencia_selector.val(), asignatura_b_procedencia_selector.val()
+        # tipo_relacion = 
+        validateRelacionType asignatura_creditos_home_textbox, asignatura_a_creditos_procedencia_textbox, asignatura_b_creditos_procedencia_textbox
+        # processSubmit tipo_relacion, asignatura_home_selector.val(), asignatura_a_procedencia_selector.val(), asignatura_b_procedencia_selector.val()
         
 
 # functions
@@ -243,7 +244,7 @@ validateRelacionType = (creditsH, creditsA, creditsB) ->
     if creditsH.val() and creditsA.val() and creditsB.val() == ''
         # verify 1-1 has at least -1 credits from home asignatura
         if creditsA.val() >= creditsH.val() - 1
-            # if do return type
+            # if do return type ============SUBMIT HERE==================
             return '1-1'
         else
             # else notify error
@@ -252,6 +253,7 @@ validateRelacionType = (creditsH, creditsA, creditsB) ->
     else if creditsH.val() and creditsA.val() and creditsB.val()
         console.log("1-2 relation")
         if Number(creditsA.val()) + Number(creditsB.val()) >= Number(creditsH.val())
+            # ===========================SUBMIT HERE========================
             return '1-2'            
         else
             return 'Creditos no suficientes'

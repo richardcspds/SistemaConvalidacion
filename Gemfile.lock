@@ -102,6 +102,9 @@ GEM
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
+    jquery-datatables (1.10.19)
+      autoprefixer-rails (>= 6.0.3)
+      sass (>= 3.5.2)
     jquery-datatables-rails (3.4.0)
       actionpack (>= 3.1)
       jquery-rails
@@ -245,6 +248,7 @@ DEPENDENCIES
   devise
   duktape
   jbuilder (~> 2.5)
+  jquery-datatables
   jquery-datatables-rails
   jquery-rails
   kaminari
