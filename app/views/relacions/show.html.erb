@@ -1,14 +1,22 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Asignatura:</strong>
-  <%= @relacion.asignaturas %>
+  <strong>Asignatura local:</strong>
+  <%= @relacion.asignatura_home_id %>
+</p>
+<p>
+  <strong>Asignatura de procedencia A:</strong>
+  <%= @relacion.asignatura_a_procedencia_id %>
+</p>
+<p>
+  <strong>Asignatura de procedencia B:</strong>
+  <%= @relacion.asignatura_b_procedencia_id %>
+</p>
+<p>
+  <strong>Universidad de procedencia:</strong>
+  <%=  %>
 </p>
 
-<p>
-  <strong>Convalida:</strong>
-  
-</p>
 
 <%= link_to 'Edit', edit_relacion_path(@relacion) %> |
 <%= link_to 'Back', relacions_path %>
