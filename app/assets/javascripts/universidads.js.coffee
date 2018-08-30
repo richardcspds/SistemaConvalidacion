@@ -1,7 +1,7 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-jQuery ->
+
     # $('#universidad_info_tables_pensums_id').hide()
     # $('#universidad_info_tables_asignaturas_id').hide()
     # if ($('#universidad_ver_select_list_id').visible(true)){

@@ -63,7 +63,6 @@ gem 'devise'
 
 gem 'jquery-rails'
 
-gem 'jquery-datatables'
 gem 'jquery-datatables-rails'
 
 gem 'rails-assets-jquery', source: 'http://insecure.rails-assets.org'
@@ -71,3 +70,5 @@ gem 'rails-assets-datatables', source: 'http://insecure.rails-assets.org'
 gem 'kaminari'
 
 gem 'bootstrap-sass'
+
+gem 'ransack'
