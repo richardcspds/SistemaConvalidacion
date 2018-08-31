@@ -4,7 +4,8 @@ class CarrerasController < ApplicationController
   # GET /carreras
   # GET /carreras.json
   def index
-    @carreras = Carrera.all
+    @search = Carrera.search(params[:q])
+    @carreras = @search.result
   end
 
   # GET /carreras/1

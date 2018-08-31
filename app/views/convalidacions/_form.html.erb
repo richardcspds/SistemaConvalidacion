@@ -76,35 +76,26 @@
 
   <div class="form-inline">
     <div class="form-group">
-      <label for="asignaturasHome">Asignaturas Locales</label>
+      <label for="asignaturas_home_choose">Asignaturas Locales</label>
       <div class="form-inline">
         <div class="field">
-          <select multiple class="list-group" id="asignaturas_home_id">
-          	<% @asignaturas.each do |asignatura| %>
-            	<option class="list-group-item"><%= asignatura.clave %> | <%= asignatura.nombre %> - CR: <%= asignatura.creditos %></option>
-            <% end %>
+          <select multiple class="list-group" id="asignaturas_home_choose">
           </select>
         </div>
       </div>
     </div>
     <div class="form-group">
-      <label for="asignaturasHome">Asignaturas de procedencia</label>
+      <label for="asignaturas_procedencia_choose">Asignaturas de procedencia</label>
       <div class="form-inline">
         <div class="field">
-          <select multiple class="list-group" id="asignaturas_proc_id">
-          	<% @asignaturas.each do |asignatura| %>
-            	<option class="list-group-item"><%= asignatura.clave %> | <%= asignatura.nombre %> - CR: <%= asignatura.creditos %></option>
-            <% end %>
+          <select multiple class="list-group" id="asignaturas_procedencia_choose">
           </select>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="field">
-    <%= form.label :convalida %>
-    <%= form.check_box :convalida %>
-  </div>
+  <input type="submit" id="convalidar_seleccion_button_id" name="convalidar_seleccion_button" value="Convalidar Seleccion" >
 
   <div class="actions">
     <%= form.submit %>

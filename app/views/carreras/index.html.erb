@@ -1,10 +1,22 @@
 <h1>Carreras</h1>
 
+<br>
+
+<%= search_form_for @search do |f| %>
+  <div class="form-inline">
+    <div class='field'>
+      <%= f.label :nombre_cont, "Nombre contiene:" %>
+      <%= f.text_field :nombre_cont %>
+    </div>
+    <div class='actions'><%= f.submit "Buscar"%></div>
+  </div>
+<% end %>
+
 <table id='carreras_table_id' class='table table-hover'>
   <thead id='carreras_table_head_id'>
     <tr>
-      <th>Nombre</th>
-      <th>Universidad</th>
+      <th><%= sort_link @search, :nombre, "Nombre" %></th>
+      <th><%= sort_link @search, :universidad_id, "Universidad" %></th>
       <th>Pensums</th>
       <th colspan="3"></th>
     </tr>

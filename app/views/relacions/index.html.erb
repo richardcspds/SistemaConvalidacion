@@ -13,9 +13,9 @@
   <tbody>
     <% @relacions.each do |relacion| %>
       <tr>
-        <td><%= relacion.asignatura_home_id %></td>
-        <td><%= relacion.asignatura_a_procedencia_id %></td>
-        <td><%= relacion.asignatura_b_procedencia_id %></td>
+        <td><%= Asignatura.find(relacion.asignatura_home_id).nombre %></td>
+        <td><%= Asignatura.find(relacion.asignatura_a_procedencia_id).nombre %></td>
+        <td><%= relacion.asignatura_b_procedencia_id.nil? ? '' : Asignatura.find_by_id(relacion.asignatura_b_procedencia_id).nombre %></td>
         <td><%= link_to 'Show', relacion %></td>
         <td><%= link_to 'Edit', edit_relacion_path(relacion) %></td>
         <td><%= link_to 'Destroy', relacion, method: :delete, data: { confirm: 'Are you sure?' } %></td>

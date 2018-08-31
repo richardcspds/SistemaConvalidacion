@@ -2,4 +2,43 @@
 
 <%= render 'form', convalidacion: @convalidacion %>
 
+<div>
+    <h3>Asignaturas de procedencia</h3>
+
+    <table id='asignaturas_procedencia_table class class="table table-hover">
+        <thead>
+            <tr>
+                <th><%= "Clave" %>Clave</th>
+                <th><%= "Asignatura" %>Asignatura</th>
+                <th><%= "Creditos" %>Creditos</th>                
+            </tr>
+        </thead>
+        
+        
+        <tbody>
+        
+        </tbody>
+
+    </table>
+</div>
+
+<div>
+    <h3>Asignaturas Locales</h3>
+
+    <table id='asignaturas_locales_table class class="table table-hover">
+        <thead>
+            <tr>
+                <th><%= "Clave" %>Clave</th>
+                <th><%= "Asignatura" %>Asignatura</th>
+                <th><%= "Creditos" %>Creditos</th>                
+            </tr>
+        </thead>
+        
+        <tbody>
+        
+        </tbody>
+
+    </table>
+</div>
+
 <%= link_to 'Back', convalidacions_path %>

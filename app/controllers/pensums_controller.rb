@@ -4,7 +4,8 @@ class PensumsController < ApplicationController
   # GET /pensums
   # GET /pensums.json
   def index
-    @pensums = Pensum.all
+    @search = Pensum.search(params[:q])
+    @pensums = @search.result
   end
 
   # GET /pensums/1

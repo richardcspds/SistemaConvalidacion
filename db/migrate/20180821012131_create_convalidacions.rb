@@ -4,6 +4,7 @@ class CreateConvalidacions < ActiveRecord::Migration[5.2]
       t.date  :fecha_realizacion
       t.string :universidad_procedencia
       t.references :estudiante
+      t.references :asignatura
 
       t.timestamps
     end
