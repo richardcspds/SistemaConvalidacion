@@ -18,6 +18,9 @@ $(document).ready ->
 
     # Buttons
     convalidar_seleccion_button = $('#convalidar_seleccion_button_id')
+    
+    # tables
+    asignaturas_convalidables_table_body = $('#asignaturas_convalidables_table_tbody_id')
   
     # default blank university
     universidad_home_selector.prop("selectedIndex", -1)
@@ -143,9 +146,12 @@ $(document).ready ->
       });
 
     convalidar_seleccion_button.click ->
-      console.log('here')
+      
       selected = asignaturas_procedencia_list.val()
-      convalidables = asignaturas_home_list.val()
+      convalidables = []
+      $('#asignaturas_home_choose option').each ->
+        convalidables.push($(this).val())
+      console.log(convalidables)
       markup = ''
 
       $.ajax({
@@ -153,7 +159,7 @@ $(document).ready ->
       url: '/asignaturas',
       type: 'GET'
       success: (asignaturas) ->
-        $.each(asignaturas, (i, id) ->  
+        $.each(asignaturas, (i, asignatura) ->  
           console.log(@id.toString() in selected)
 
           # identificar las asignaturas seleccionadas
@@ -163,26 +169,33 @@ $(document).ready ->
             url: '/relacions',
             type: 'GET'
             success: (relacions) ->
-              $.each(relacions, (i, id) ->  
-                console.log(@id.toString() in selected)                
+              $.each(relacions, (j, relacion) ->                                  
                 # validar si relacion es tipo 1-1
-                if (@tipo_relacion.toString() == '1') 
+                if (@tipo_relacion.toString() == '1')
                   # si existe relacion y agregar convalidacion
-                  if(relacions.asignatura_a_procedencia_id.toString() == asignaturas.id.toString() and relacions.asignatura_home_id.toString() in convalidables)
+                  if((relacion.asignatura_a_procedencia_id.toString() == asignatura.id.toString()) and (relacion.asignatura_home_id.toString() in convalidables))
                     console.log('existe relacion 1-1 ')
                     markup = '<tr><td><input type="checkbox" id="'+ asignatura.id + '"></td><td>' + asignatura.clave + '</td><td>' + asignatura.nombre + '</td><td>' + asignatura.creditos + '</td></tr>'
+                    console.log(markup)
+                    asignaturas_convalidables_table_body.append(markup)
                 # validar si relacion es tipo 1-2
                 else if (@tipo_relacion.toString() == '2')
                   # si existe relacion y agregar convalidacion
-                  if(relacions.asignatura_a_procedencia_id.toString() == asignaturas.id.toString() and relacions.asignatura_b_procedencia_id.toString() in selected and relacions.asignatura_home_id.toString() in convalidables)
-                    console.log('existe relacion 1-2)
+                  if((relacion.asignatura_a_procedencia_id.toString() == asignatura.id.toString()) and (relacion.asignatura_b_procedencia_id.toString() in selected) and (relacion.asignatura_home_id.toString() in convalidables))
+                    console.log('existe relacion 1-2')
                     markup = '<tr><td><input type="checkbox" id="'+ asignatura.id + '"></td><td>' + asignatura.clave + '</td><td>' + asignatura.nombre + '</td><td>' + asignatura.creditos + '</td></tr>'
-                  else if (relacions.asignatura_b_procedencia_id.toString() == asignaturas.id.toString() and relacions.asignatura_a_procedencia_id.toString() in selected and relacions.asignatura_home_id.toString() in convalidables)
+                    console.log(markup)
+                    asignaturas_convalidables_table_body.append(markup)
+                  else if ((relacion.asignatura_b_procedencia_id.toString() == asignatura.id.toString()) and (relacion.asignatura_a_procedencia_id.toString() in selected) and (relacion.asignatura_home_id.toString() in convalidables))
                     markup = '<tr><td><input type="checkbox" id="'+ asignatura.id + '"></td><td>' + asignatura.clave + '</td><td>' + asignatura.nombre + '</td><td>' + asignatura.creditos + '</td></tr>'
+                    console.log('existe relacion 1-2')
+                    console.log(markup)
+                    asignaturas_convalidables_table_body.append(markup)
               )
             });                             
         )
-      });
+      });     
+
       
 
 

@@ -26,6 +26,14 @@ class RelacionsController < ApplicationController
   def create
     @relacion = Relacion.new(relacion_params)
 
+
+    if (@relacion.asignatura_a_procedencia_id && @relacion.asignatura_b_procedencia_id.nil?)
+      @relacion.tipo_relacion = "1"
+    elsif (@relacion.asignatura_a_procedencia_id && @relacion.asignatura_b_procedencia_id)
+      @relacion.tipo_relacion = "2"
+    end
+
+
     respond_to do |format|
       if @relacion.save
         format.html { redirect_to @relacion, notice: 'Relacion was successfully created.' }
@@ -62,6 +70,7 @@ class RelacionsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_relacion
       @relacion = Relacion.find(params[:id])

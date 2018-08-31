@@ -38,8 +38,10 @@ ActiveRecord::Schema.define(version: 2018_08_22_193610) do
     t.date "fecha_realizacion"
     t.string "universidad_procedencia"
     t.integer "estudiante_id"
+    t.integer "asignatura_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["asignatura_id"], name: "index_convalidacions_on_asignatura_id"
     t.index ["estudiante_id"], name: "index_convalidacions_on_estudiante_id"
   end
 
@@ -84,7 +86,8 @@ ActiveRecord::Schema.define(version: 2018_08_22_193610) do
   create_table "relacions", force: :cascade do |t|
     t.integer "asignatura_home_id"
     t.integer "asignatura_a_procedencia_id"
-    t.integer "asignatura_b_procedencia_id" null: true
+    t.integer "asignatura_b_procedencia_id"
+    t.integer "tipo_relacion"
     t.integer "asignatura_id"
     t.integer "convalidacion_id"
     t.datetime "created_at", null: false

@@ -3,29 +3,9 @@
 <%= render 'form', convalidacion: @convalidacion %>
 
 <div>
-    <h3>Asignaturas de procedencia</h3>
+    <h3>Asignaturas de convalidables</h3>
 
-    <table id='asignaturas_procedencia_table class class="table table-hover">
-        <thead>
-            <tr>
-                <th><%= "Clave" %>Clave</th>
-                <th><%= "Asignatura" %>Asignatura</th>
-                <th><%= "Creditos" %>Creditos</th>                
-            </tr>
-        </thead>
-        
-        
-        <tbody>
-        
-        </tbody>
-
-    </table>
-</div>
-
-<div>
-    <h3>Asignaturas Locales</h3>
-
-    <table id='asignaturas_locales_table class class="table table-hover">
+    <table id='asignaturas_convalidables_table_id' class="table table-hover">
         <thead>
             <tr>
                 <th><%= "Sel" %>Sel</th>
@@ -34,8 +14,8 @@
                 <th><%= "Creditos" %>Creditos</th>                
             </tr>
         </thead>
-        
-        <tbody>
+                
+        <tbody id='asignaturas_convalidables_table_tbody_id'>
         
         </tbody>
 
