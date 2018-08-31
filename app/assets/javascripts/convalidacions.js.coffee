@@ -145,17 +145,42 @@ $(document).ready ->
     convalidar_seleccion_button.click ->
       console.log('here')
       selected = asignaturas_procedencia_list.val()
+      convalidables = asignaturas_home_list.val()
+      markup = ''
+
       $.ajax({
       dataType: "json",
       url: '/asignaturas',
       type: 'GET'
-      success: (data) ->
-        $.each(data, (i, id) ->  
+      success: (asignaturas) ->
+        $.each(asignaturas, (i, id) ->  
           console.log(@id.toString() in selected)
-          if (@id.toString() in selected)              
-            markup = '<tr><td><input type="checkbox" id="record'+ @id + '></td><td>' + @clave + '</td><td>' + @nombre + '</td><td>' + @creditos + '</td></tr>'
-            console.log(markup)
-                 
+
+          # identificar las asignaturas seleccionadas
+          if (@id.toString() in selected) 
+            $.ajax({
+            dataType: "json",
+            url: '/relacions',
+            type: 'GET'
+            success: (relacions) ->
+              $.each(relacions, (i, id) ->  
+                console.log(@id.toString() in selected)                
+                # validar si relacion es tipo 1-1
+                if (@tipo_relacion.toString() == '1') 
+                  # si existe relacion y agregar convalidacion
+                  if(relacions.asignatura_a_procedencia_id.toString() == asignaturas.id.toString() and relacions.asignatura_home_id.toString() in convalidables)
+                    console.log('existe relacion 1-1 ')
+                    markup = '<tr><td><input type="checkbox" id="'+ asignatura.id + '"></td><td>' + asignatura.clave + '</td><td>' + asignatura.nombre + '</td><td>' + asignatura.creditos + '</td></tr>'
+                # validar si relacion es tipo 1-2
+                else if (@tipo_relacion.toString() == '2')
+                  # si existe relacion y agregar convalidacion
+                  if(relacions.asignatura_a_procedencia_id.toString() == asignaturas.id.toString() and relacions.asignatura_b_procedencia_id.toString() in selected and relacions.asignatura_home_id.toString() in convalidables)
+                    console.log('existe relacion 1-2)
+                    markup = '<tr><td><input type="checkbox" id="'+ asignatura.id + '"></td><td>' + asignatura.clave + '</td><td>' + asignatura.nombre + '</td><td>' + asignatura.creditos + '</td></tr>'
+                  else if (relacions.asignatura_b_procedencia_id.toString() == asignaturas.id.toString() and relacions.asignatura_a_procedencia_id.toString() in selected and relacions.asignatura_home_id.toString() in convalidables)
+                    markup = '<tr><td><input type="checkbox" id="'+ asignatura.id + '"></td><td>' + asignatura.clave + '</td><td>' + asignatura.nombre + '</td><td>' + asignatura.creditos + '</td></tr>'
+              )
+            });                             
         )
       });
       
