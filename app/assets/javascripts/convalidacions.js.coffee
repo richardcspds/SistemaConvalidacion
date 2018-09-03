@@ -178,7 +178,8 @@ $(document).ready ->
 
                     $.each(asignaturas, (i,asignatura_h) ->
                       if (relacion.asignatura_home_id.toString() == asignatura_h.id.toString())
-                        markup = '<tr><td><input type="checkbox" id="'+ asignatura_h.id + '"></td><td>' + asignatura_h.clave + '</td><td>' + asignatura_h.nombre + '</td><td>' + asignatura_h.creditos + '</td></tr>'
+                        markup = '<tr><td>' + asignatura.clave + '</td><td>' + asignatura.nombre + '</td><td contenteditable="true"></td><td>' + asignatura.creditos + \
+                                 '</td><td>' + asignatura_h.clave + '</td><td>' + asignatura_h.nombre + '</td><td>' + asignatura_h.creditos + '</td></tr>'
                         console.log(markup)
                         asignaturas_convalidables_table_body.append(markup)                    
                     )
@@ -190,7 +191,8 @@ $(document).ready ->
                     console.log('existe relacion 1-2')
                     $.each(asignaturas, (i,asignatura_h) ->
                       if (relacion.asignatura_home_id.toString() == asignatura_h.id.toString())
-                        markup = '<tr><td><input type="checkbox" id="'+ asignatura_h.id + '"></td><td>' + asignatura_h.clave + '</td><td>' + asignatura_h.nombre + '</td><td>' + asignatura_h.creditos + '</td></tr>'
+                        markup = '<tr><td>' + asignatura.clave + '</td><td>' + asignatura.nombre + '</td><td contenteditable="true"></td><td>' + asignatura.creditos + \
+                                 '</td><td>' + asignatura_h.clave + '</td><td>' + asignatura_h.nombre + '</td><td>' + asignatura_h.creditos + '</td></tr>'
                         console.log(markup)
                         asignaturas_convalidables_table_body.append(markup)                    
                     )                  

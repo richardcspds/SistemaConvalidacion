@@ -3,15 +3,19 @@
 <%= render 'form', convalidacion: @convalidacion %>
 
 <div>
-    <h3>Asignaturas de convalidables</h3>
+    <h3>Reporte de Convalidación    <span class="glyphicon glyphicon-print" aria-hidden="true"></span></h3>
 
     <table id='asignaturas_convalidables_table_id' class="table table-hover">
         <thead>
             <tr>
-                <th><%= "Sel" %>Sel</th>
-                <th><%= "Clave" %>Clave</th>
-                <th><%= "Asignatura" %>Asignatura</th>
-                <th><%= "Creditos" %>Creditos</th>                
+                <th><%=  %>Clave</th>
+                <th><%=  %>Asig. Convalidables</th>
+                <th><%=  %>Calificacion</th>
+                <th><%=  %>CR</th>
+                <th><%=  %>Clave</th>
+                <th><%=  %>Asig. Convalidadas</th>
+                <th><%=  %>CR</th>
+                                
             </tr>
         </thead>
                 
@@ -20,6 +24,8 @@
         </tbody>
 
     </table>
+    
 </div>
+
 
 <%= link_to 'Back', convalidacions_path %>

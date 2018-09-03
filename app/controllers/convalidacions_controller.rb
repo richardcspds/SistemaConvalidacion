@@ -5,6 +5,11 @@ class ConvalidacionsController < ApplicationController
   # GET /convalidacions.json
   def index
     @convalidacions = Convalidacion.all
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf {render template: 'convalidacions/convalidacionpdf', pdf: 'Convalidacionpdf' }
+    end
   end
 
   # GET /convalidacions/1
@@ -27,6 +32,7 @@ class ConvalidacionsController < ApplicationController
   # POST /convalidacions.json
   def create
     @convalidacion = Convalidacion.new(convalidacion_params)
+    @estudiante = Estudiante.new(estudiante_params)
 
     respond_to do |format|
       if @convalidacion.save
@@ -74,5 +80,11 @@ class ConvalidacionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def convalidacion_params
       params.require(:convalidacion).permit(:convalida, :asignatura_id)
+    end
+    def set_estudiante
+      @estudiante = Estudiante.find(params[:id])
+    end
+    def estudiante_params
+      params.requiere(:estudiante).permit(:nombres, apellidos, matricula)
     end
 end

@@ -25,6 +25,9 @@ gem 'coffee-script-source', '1.8.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
+
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
@@ -46,7 +49,6 @@ end
 
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'byebug'
   gem 'web-console', '>= 3.3.0'
   gem 'better_errors', '~> 2.1', '>= 2.1.1'
   gem "binding_of_caller"
