@@ -35,14 +35,14 @@
 
             <div class="form-inline">
               <%= form.label :universidad_home_id %>
-              <%= form.collection_select :universidad_home_id, Universidad.all, :id, :nombre, {:selected => 'UTESA', :include_blank => true} %>
+              <%= form.collection_select :universidad_home_id, Universidad.all, :id, :nombre, {:selected => 'UTESA', :include_blank => true}, {:class => "form-control"} %>
               <div class="form-group">
                 <%= form.label :carrera_home_id %>
-                <%= form.grouped_collection_select :carrera_home_id, Universidad.order(:nombre), :carreras, :nombre, :id,  :nombre , {:include_blank => true} %>
+                <%= form.grouped_collection_select :carrera_home_id, Universidad.order(:nombre), :carreras, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
               </div>
               <div class="form-group">
                 <%= form.label :pensum_home_id %>
-                <%= form.grouped_collection_select :pensum_home_id, Carrera.order(:nombre), :pensums, :nombre, :id,  :nombre , {:include_blank => true} %>
+                <%= form.grouped_collection_select :pensum_home_id, Carrera.order(:nombre), :pensums, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
               </div>
             </div>
           </div>
@@ -55,15 +55,15 @@
             <div class="form-inline">
               <div class="form-group">
                 <%= form.label :universidad_procedencia_id %>
-                <%= form.collection_select :universidad_procedencia_id, Universidad.order(:nombre), :id, :nombre, :include_blank => true %>
+                <%= form.collection_select :universidad_procedencia_id, Universidad.order(:nombre), :id, :nombre, {:include_blank => true}, {:class => "form-control"} %>
               </div>
               <div class="form-group">
                 <%= form.label :carrera_procedencia_id %>
-                <%= form.grouped_collection_select :carrera_procedencia_id, Universidad.order(:nombre), :carreras, :nombre, :id,  :nombre , {:include_blank => true} %>
+                <%= form.grouped_collection_select :carrera_procedencia_id, Universidad.order(:nombre), :carreras, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
               </div>
               <div class="form-group">
                 <%= form.label :pensum_procedencia_id %>
-                <%= form.grouped_collection_select :pensum_procedencia_id, Carrera.order(:nombre), :pensums, :nombre, :id, :nombre, {:multiple => true, :include_blank => true} %>
+                <%= form.grouped_collection_select :pensum_procedencia_id, Carrera.order(:nombre), :pensums, :nombre, :id, :nombre, {:multiple => true, :include_blank => true}, {:class => "form-control"} %>
               </div>
             </div>
           </div>
@@ -95,9 +95,12 @@
     </div>
   </div>
 
-  <input type="submit" id="convalidar_seleccion_button_id" name="convalidar_seleccion_button" value="Convalidar Seleccion" >
+  <input type="submit" id="convalidar_seleccion_button_id" name="convalidar_seleccion_button" class="btn btn-primary" value="Convalidar Seleccion" >
+
+  <br><br>
 
   <div class="actions">
-    <%= form.submit %>
+  <%= form.submit class: "btn btn-success"%>
   </div>
+
 <% end %>

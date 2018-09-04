@@ -1,6 +1,12 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
+$(document).on "turbolinks:load", ->
+  jQuery ->
+    $(document).ready(fieldsControl())
+
+
+
 
 fieldsControl = ->
   $('#asignatura_universidad_id').prop("selectedIndex", -1)
@@ -36,8 +42,6 @@ fieldsControl = ->
 
  
 
-jQuery ->
-  $(document).ready(fieldsControl())
      
     
   

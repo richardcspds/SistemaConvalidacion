@@ -13,20 +13,22 @@
 
   <div class="field">
     <%= form.label :nombre %>
-    <%= form.text_field :nombre %>
+    <%= form.text_field :nombre, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :descripcion %>
-    <%= form.text_area :descripcion %>
+    <%= form.text_area :descripcion, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :logo %>
-    <%= form.file_field :logo, id: :universidad_logo %>
+    <%= form.file_field :logo, id: :universidad_logo, class: "form-control-file" %>
   </div>
 
+  <br>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary"%>
   </div>
 <% end %>

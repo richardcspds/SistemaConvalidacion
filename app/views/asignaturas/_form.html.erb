@@ -13,34 +13,38 @@
 
   <div class="field">
     <%= form.label :clave %>
-    <%= form.text_field :clave %>
+    <%= form.text_field :clave, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :nombre %>
-    <%= form.text_field :nombre %>
+    <%= form.text_field :nombre, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :creditos %>
-    <%= form.number_field :creditos %>
+    <%= form.number_field :creditos, class: "form-control" %>
   </div>
+
+  <br>
 
   <div class="form-inline">
     <%= form.label :universidad_id %>
-    <%= form.collection_select :universidad_id, Universidad.all, :id, :nombre, {:include_blank => true} %>
+    <%= form.collection_select :universidad_id, Universidad.all, :id, :nombre, {:include_blank => true}, {:class => "form-control"} %>
     <div class="form-group">
       <%= form.label :carrera_id %>
-      <%= form.grouped_collection_select :carrera_id, Universidad.order(:nombre), :carreras, :nombre, :id,  :nombre , {:include_blank => true} %>
+      <%= form.grouped_collection_select :carrera_id, Universidad.order(:nombre), :carreras, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
     </div>
     <div class="form-group">
       <%= form.label :pensum_id %>
-      <%= form.grouped_collection_select :pensum_id, Carrera.order(:nombre), :pensums, :nombre, :id,  :nombre , {:include_blank => true} %>
+      <%= form.grouped_collection_select :pensum_id, Carrera.order(:nombre), :pensums, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
     </div>
   </div>
 
+  <br>
 
+      
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary"%>
   </div>
 <% end %>

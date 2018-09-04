@@ -13,26 +13,30 @@
 
   <div class="field">
     <%= form.label :nombre %>
-    <%= form.text_field :nombre %>
+    <%= form.text_field :nombre, class: "form-control" %>
   </div>
-
+  <br>
+        
   <div class="field">
     <%= form.label :date %>
-    <%= form.date_select :date %>
+    <%= form.date_select :date, class: "form-control" %>
   </div>
+  <br>
 
   <div class="field">
     <%= form.label :universidad_id %>
-    <%= form.collection_select :universidad_id, Universidad.order(:nombre), :id, :nombre, include_blank: true %>
+    <%= form.collection_select :universidad_id, Universidad.order(:nombre), :id, :nombre, {:include_blank => true}, {:class => "form-control"}  %>
   </div>
+  <br>
 
   <div class="field">
     <%= form.label :carrera_id %>
-    <%= form.grouped_collection_select :carrera_id, Universidad.order(:nombre), :carreras, :nombre, :id,  :nombre , {:include_blank => true} %>
+    <%= form.grouped_collection_select :carrera_id, Universidad.order(:nombre), :carreras, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
   </div>
 
+  <br>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>

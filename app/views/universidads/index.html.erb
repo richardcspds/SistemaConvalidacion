@@ -6,11 +6,13 @@
   <div class="form-inline">
     <div class='field'>
       <%= f.label :nombre_cont, "Nombre contiene:" %>
-      <%= f.text_field :nombre_cont %>
+      <%= f.text_field :nombre_cont, class: "form-control" %>
+      <input class="btn btn-primary" type="submit" value="Buscar">
     </div>
-    <div class='actions'><%= f.submit "Buscar"%></div>
   </div>
 <% end %>
+
+<br>
 
 <table id='universidad_table' class="table table-hover" style="width:100%">
   <thead>

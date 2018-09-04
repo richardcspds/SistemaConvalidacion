@@ -13,16 +13,17 @@
 
   <div class="field">
     <%= form.label :nombre %>
-    <%= form.text_field :nombre %>
+    <%= form.text_field :nombre, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :universidad_id %>
-    <%= collection_select( :carrera, :universidad_id, Universidad.all, :id, :nombre, {}, {:multiple => false} )  %>
+    <%= collection_select( :carrera, :universidad_id, Universidad.all, :id, :nombre, {}, {:multiple => false, :class => "form-control"})   %>
   </div>
 
+  <br>
+      
   <div class="actions">
-    <%= form.submit %>
-    <%= submit_tag("Ver Pensums") %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
