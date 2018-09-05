@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  convalidacions: one
+  asignaturas: one
+  asignatura_procedencia_clave: MyString
+  asignatura_procedencia_nombre: MyString
+  asignatura_procedencia_calificacion: MyString
+  asignatura_procedencia_creditos: 1
+  asignatura_local_clave: MyString
+  asignatura_local_nombre: MyString
+  asignatura_local_creditos: 1
+
+two:
+  convalidacions: two
+  asignaturas: two
+  asignatura_procedencia_clave: MyString
+  asignatura_procedencia_nombre: MyString
+  asignatura_procedencia_calificacion: MyString
+  asignatura_procedencia_creditos: 1
+  asignatura_local_clave: MyString
+  asignatura_local_nombre: MyString
+  asignatura_local_creditos: 1

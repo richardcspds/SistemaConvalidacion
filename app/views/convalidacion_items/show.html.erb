@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Convalidacions:</strong>
+  <%= @convalidacion_item.convalidacions %>
+</p>
+
+<p>
+  <strong>Asignaturas:</strong>
+  <%= @convalidacion_item.asignaturas %>
+</p>
+
+<p>
+  <strong>Asignatura procedencia clave:</strong>
+  <%= @convalidacion_item.asignatura_procedencia_clave %>
+</p>
+
+<p>
+  <strong>Asignatura procedencia nombre:</strong>
+  <%= @convalidacion_item.asignatura_procedencia_nombre %>
+</p>
+
+<p>
+  <strong>Asignatura procedencia calificacion:</strong>
+  <%= @convalidacion_item.asignatura_procedencia_calificacion %>
+</p>
+
+<p>
+  <strong>Asignatura procedencia creditos:</strong>
+  <%= @convalidacion_item.asignatura_procedencia_creditos %>
+</p>
+
+<p>
+  <strong>Asignatura local clave:</strong>
+  <%= @convalidacion_item.asignatura_local_clave %>
+</p>
+
+<p>
+  <strong>Asignatura local nombre:</strong>
+  <%= @convalidacion_item.asignatura_local_nombre %>
+</p>
+
+<p>
+  <strong>Asignatura local creditos:</strong>
+  <%= @convalidacion_item.asignatura_local_creditos %>
+</p>
+
+<%= link_to 'Edit', edit_convalidacion_item_path(@convalidacion_item) %> |
+<%= link_to 'Back', convalidacion_items_path %>

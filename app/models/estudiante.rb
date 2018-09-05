@@ -1,5 +1,8 @@
 class Estudiante < ApplicationRecord
   belongs_to :persona
-  belongs_to :carrera
+  has_many :carreras
   has_many :asignaturas, through: :carrera
+  has_many :convalidacions
+  
+  
 end

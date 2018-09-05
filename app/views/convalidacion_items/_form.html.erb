@@ -1,0 +1,62 @@
+<%= form_with(model: convalidacion_item, local: true) do |form| %>
+  <% if convalidacion_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(convalidacion_item.errors.count, "error") %> prohibited this convalidacion_item from being saved:</h2>
+
+      <ul>
+      <% convalidacion_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :convalidacions_id %>
+    <%= form.text_field :convalidacions_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :asignaturas_id %>
+    <%= form.text_field :asignaturas_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :asignatura_procedencia_clave %>
+    <%= form.text_field :asignatura_procedencia_clave %>
+  </div>
+
+  <div class="field">
+    <%= form.label :asignatura_procedencia_nombre %>
+    <%= form.text_field :asignatura_procedencia_nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :asignatura_procedencia_calificacion %>
+    <%= form.text_field :asignatura_procedencia_calificacion %>
+  </div>
+
+  <div class="field">
+    <%= form.label :asignatura_procedencia_creditos %>
+    <%= form.number_field :asignatura_procedencia_creditos %>
+  </div>
+
+  <div class="field">
+    <%= form.label :asignatura_local_clave %>
+    <%= form.text_field :asignatura_local_clave %>
+  </div>
+
+  <div class="field">
+    <%= form.label :asignatura_local_nombre %>
+    <%= form.text_field :asignatura_local_nombre %>
+  </div>
+
+  <div class="field">
+    <%= form.label :asignatura_local_creditos %>
+    <%= form.number_field :asignatura_local_creditos %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

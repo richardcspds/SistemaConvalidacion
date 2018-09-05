@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_22_193610) do
+ActiveRecord::Schema.define(version: 2018_09_04_150605) do
 
   create_table "asignaturas", force: :cascade do |t|
     t.string "nombre"
@@ -32,6 +32,22 @@ ActiveRecord::Schema.define(version: 2018_08_22_193610) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["universidad_id"], name: "index_carreras_on_universidad_id"
+  end
+
+  create_table "convalidacion_items", force: :cascade do |t|
+    t.integer "convalidacions_id"
+    t.integer "asignaturas_id"
+    t.string "asignatura_procedencia_clave"
+    t.string "asignatura_procedencia_nombre"
+    t.string "asignatura_procedencia_calificacion"
+    t.integer "asignatura_procedencia_creditos"
+    t.string "asignatura_local_clave"
+    t.string "asignatura_local_nombre"
+    t.integer "asignatura_local_creditos"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["asignaturas_id"], name: "index_convalidacion_items_on_asignaturas_id"
+    t.index ["convalidacions_id"], name: "index_convalidacion_items_on_convalidacions_id"
   end
 
   create_table "convalidacions", force: :cascade do |t|

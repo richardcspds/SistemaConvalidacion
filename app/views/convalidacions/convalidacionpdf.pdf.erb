@@ -46,6 +46,7 @@
                     <tr>
                         <th>Clave</th>
                         <th>Asig. Convalidables</th>
+                        <th>Calificacion</th>
                         <th>CR</th>
                         <th>Clave</th>
                         <th>Asig. Convalidadas</th>
@@ -54,22 +55,17 @@
                 </thead>
 
                 <tbody>
-                    <tr>
-                        <td>MAT-095</td>
-                        <td>Matemática Básica</td>
-                        <td>4</td>
-                        <td>MAT111</td>
-                        <td>Matemática Básica</td>
-                        <td>4</td>
-                    </tr>
-                    <tr>
-                        <td>MAT-095</td>
-                        <td>Matemática Básica</td>
-                        <td>4</td>
-                        <td>MAT111</td>
-                        <td>Matemática Básica</td>
-                        <td>4</td>
-                    </tr>                       
+                    <%= Convalidacion_items.find_by_convalidacion_id(:id).each do | item | %>
+                        <tr>
+                            <td><%= item.asignatura_procedencia_clave %></td>
+                            <td><%= item.asignatura_procedencia_nombre %>Matemática Básica</td>
+                            <td><%= item.asignatura_procedencia_calificacion %>A</td>
+                            <td><%= item.asignatura_procedencia_creditos %>4</td>
+                            <td><%= item.asignatura_local_clave %>MAT111</td>
+                            <td><%= item.asignatura_local_nombre %>Matemática Básica</td>
+                            <td><%= item.asignatura_local_creditos %>4</td>
+                        </tr>                                         
+                    <% end %>
                 </tbody>
             </table>
         </div>

@@ -17,15 +17,18 @@
     </div>
     <div class="panel-body">
       <form>
-        <div class="form-inline">
-          <label for="estudianteNombres">Nombres</label>
-          <input type="text" class="form-control" id="estudianteNombrestxt" placeholder="Escribir Nombres" >
-          <label for="estudianteApellidos">Apellidos</label>
-          <input type="text" class="form-control" id="estudianteApellidostxt" placeholder="Escribir Apellidos" >
-          <label for="estudianteMatriculas">Matricula</label>
-          <input type="text" class="form-control" id="estudianteMatriculatxt" placeholder="Escribir Matricula" value:"" >
-        </div>
-
+        <%= fields_for :estudiantes, @estudiantes do |e| %> 
+          <div class="form_group">
+            <div class="form-inline">
+              <label for="estudiante_nombres">Nombres</label>
+              <input type="text" class="form-control" id="estudiante_nombres" placeholder="Escribir Nombres" >
+              <label for="estudiante_apellidos">Apellidos</label>
+              <input type="text" class="form-control" id="estudiante_apellidos" placeholder="Escribir Apellidos" >
+              <label for="estudiante_matricula">Matricula</label>
+              <input type="text" class="form-control" id="estudiante_matricula" placeholder="Escribir Matricula" value:"" >
+            </div>
+          </div>
+        <% end %>
 
         <div class="form-inline">
           <div class="form-group">
@@ -68,8 +71,6 @@
             </div>
           </div>
         </div>
-
-
       </form>
     </div>
   </div>

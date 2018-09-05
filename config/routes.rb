@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :convalidacion_items
   resources :relacions
   resources :estudiantes
   resources :personas

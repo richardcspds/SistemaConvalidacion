@@ -31,8 +31,8 @@ class ConvalidacionsController < ApplicationController
   # POST /convalidacions
   # POST /convalidacions.json
   def create
-    @convalidacion = Convalidacion.new(convalidacion_params)
-    @estudiante = Estudiante.new(estudiante_params)
+    @convalidacion = Convalidacion.new(convalidacion_params)    
+    @convalidacion.estudiante.new
 
     respond_to do |format|
       if @convalidacion.save
@@ -79,7 +79,7 @@ class ConvalidacionsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def convalidacion_params
-      params.require(:convalidacion).permit(:convalida, :asignatura_id)
+      params.require(:convalidacion).permit(:universidad_procedencia_id, estudiantes_attributes: [:nombres, :apellidos, :matricula])
     end
     def set_estudiante
       @estudiante = Estudiante.find(params[:id])
