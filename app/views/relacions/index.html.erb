@@ -6,6 +6,7 @@
       <th>Asignatura</th>
       <th>Asignatura A Procedencia</th>
       <th>Asignatura B Procedencia</th>
+      <th>Universidad de Procedencia</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,6 +17,7 @@
         <td><%= Asignatura.find(relacion.asignatura_home_id).nombre %></td>
         <td><%= Asignatura.find(relacion.asignatura_a_procedencia_id).nombre %></td>
         <td><%= relacion.asignatura_b_procedencia_id.nil? ? '' : Asignatura.find_by_id(relacion.asignatura_b_procedencia_id).nombre %></td>
+        <td><%= Universidad.find(Asignatura.find(relacion.asignatura_a_procedencia_id).universidad_id).nombre %></td>
         <td><%= link_to 'Show', relacion %></td>
         <td><%= link_to 'Edit', edit_relacion_path(relacion) %></td>
         <td><%= link_to 'Destroy', relacion, method: :delete, data: { confirm: 'Are you sure?' } %></td>

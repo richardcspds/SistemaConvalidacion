@@ -2,19 +2,19 @@
 
 <p>
   <strong>Asignatura local:</strong>
-  <%= @relacion.asignatura_home_id %>
+  <%= Asignatura.find(@relacion.asignatura_home_id).nombre %>
 </p>
 <p>
   <strong>Asignatura de procedencia A:</strong>
-  <%= @relacion.asignatura_a_procedencia_id %>
+  <%= Asignatura.find(@relacion.asignatura_a_procedencia_id).nombre %>
 </p>
 <p>
   <strong>Asignatura de procedencia B:</strong>
-  <%= @relacion.asignatura_b_procedencia_id %>
+  <%= @relacion.asignatura_b_procedencia_id.nil? ? '' : Asignatura.find(@relacion.asignatura_b_procedencia_id).nombre %>
 </p>
 <p>
   <strong>Universidad de procedencia:</strong>
-  <%=  %>
+  <%= Universidad.find(Asignatura.find(@relacion.asignatura_a_procedencia_id).universidad_id).nombre %>
 </p>
 
 

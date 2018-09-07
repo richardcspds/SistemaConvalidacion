@@ -21,6 +21,9 @@ $(document).on "turbolinks:load", ->
     
     # tables
     asignaturas_convalidables_table_body = $('#asignaturas_convalidables_table_tbody_id')
+
+    # Hidden
+    div_hidden_item_fields = $('#hidden_items_fields_div_id')
   
     # default blank university
     universidad_home_selector.prop("selectedIndex", -1)
@@ -153,6 +156,8 @@ $(document).on "turbolinks:load", ->
         convalidables.push($(this).val())
       console.log(convalidables)
       markup = ''
+      hidden = ''
+      x = 0
 
       $.ajax({
       dataType: "json",
@@ -180,8 +185,16 @@ $(document).on "turbolinks:load", ->
                       if (relacion.asignatura_home_id.toString() == asignatura_h.id.toString())
                         markup = '<tr><td>' + asignatura.clave + '</td><td>' + asignatura.nombre + '</td><td contenteditable="true"></td><td>' + asignatura.creditos + \
                                  '</td><td>' + asignatura_h.clave + '</td><td>' + asignatura_h.nombre + '</td><td>' + asignatura_h.creditos + '</td></tr>'
+                        hidden = '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_procedencia_clave]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_procedencia_clave" value="'+ asignatura.clave + '">'+\
+                                 '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_procedencia_nombre]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_procedencia_nombre" value="'+ asignatura.nombre + '">'+\
+                                 '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_procedencia_creditos]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_procedencia_creditos" value="'+ asignatura.creditos + '">'+\
+                                 '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_local_clave]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_local_clave" value="'+ asignatura_h.clave + '">'+\
+                                 '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_local_nombre]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_local_nombre" value="'+ asignatura_h.nombre + '">'+\
+                                 '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_local_creditos]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_local_creditos" value="'+ asignatura_h.creditos + '">'
                         console.log(markup)
-                        asignaturas_convalidables_table_body.append(markup)                    
+                        x = x + 1
+                        asignaturas_convalidables_table_body.append(markup)
+                        div_hidden_item_fields.append(hidden)                    
                     )
                 # validar si relacion es tipo 1-2
                 else if (@tipo_relacion.toString() == '2')
@@ -193,8 +206,16 @@ $(document).on "turbolinks:load", ->
                       if (relacion.asignatura_home_id.toString() == asignatura_h.id.toString())
                         markup = '<tr><td>' + asignatura.clave + '</td><td>' + asignatura.nombre + '</td><td contenteditable="true"></td><td>' + asignatura.creditos + \
                                  '</td><td>' + asignatura_h.clave + '</td><td>' + asignatura_h.nombre + '</td><td>' + asignatura_h.creditos + '</td></tr>'
+                        hidden = '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_procedencia_clave]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_procedencia_clave" value="'+ asignatura.clave + '">'+\
+                                 '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_procedencia_nombre]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_procedencia_nombre" value="'+ asignatura.nombre + '">'+\
+                                 '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_procedencia_creditos]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_procedencia_creditos" value="'+ asignatura.creditos + '">'+\
+                                 '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_local_clave]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_local_clave" value="'+ asignatura_h.clave + '">'+\
+                                 '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_local_nombre]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_local_nombre" value="'+ asignatura_h.nombre + '">'+\
+                                 '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_local_creditos]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_local_creditos" value="'+ asignatura_h.creditos + '">'
                         console.log(markup)
-                        asignaturas_convalidables_table_body.append(markup)                    
+                        x = x + 1
+                        asignaturas_convalidables_table_body.append(markup)     
+                        div_hidden_item_fields.append(hidden)                
                     )                  
               )
             });                             

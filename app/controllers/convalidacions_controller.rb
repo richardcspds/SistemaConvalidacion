@@ -19,9 +19,9 @@ class ConvalidacionsController < ApplicationController
 
   # GET /convalidacions/new
   def new
-    @universidad = Universidad.all
-    @asignaturas = Asignatura.all
     @convalidacion = Convalidacion.new
+    @convalidacion.build_estudiante
+    @convalidacion.convalidacion_items.new
   end
 
   # GET /convalidacions/1/edit
@@ -31,11 +31,16 @@ class ConvalidacionsController < ApplicationController
   # POST /convalidacions
   # POST /convalidacions.json
   def create
-    @convalidacion = Convalidacion.new(convalidacion_params)    
-    @convalidacion.estudiante.new
+    @convalidacion = Convalidacion.new(convalidacion_params)
 
+    byebug
     respond_to do |format|
       if @convalidacion.save
+        @estudiante = @convalidacion.estudiante
+        @convalidacion.convalidacion_items.each do |item|
+          @convalidacion_item = item
+        end
+        byebug
         format.html { redirect_to @convalidacion, notice: 'Convalidacion was successfully created.' }
         format.json { render :show, status: :created, location: @convalidacion }
       else
@@ -74,17 +79,13 @@ class ConvalidacionsController < ApplicationController
     def set_convalidacion
       @convalidacion = Convalidacion.find(params[:id])
     end
-    def get_asignaturas
-      @asignatura = Asignatura.find(params[:id])
-    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def convalidacion_params
-      params.require(:convalidacion).permit(:universidad_procedencia_id, estudiantes_attributes: [:nombres, :apellidos, :matricula])
+      params.require(:convalidacion).permit(:universidad_home_id, :universidad_procedencia_id, :estudiante_id, estudiante_attributes: [:id, :nombres, :apellidos, :matricula],\
+                                            convalidacion_items_attributes: [:id, :convalidacion_id, :asignatura_procedencia_clave, :asignatura_procedencia_nombre,\
+                                            :asignatura_procedencia_calificacion, :asignatura_procedencia_creditos, :asignatura_local_clave, :asignatura_local_nombre,\
+                                            :asignatura_local_creditos])
     end
-    def set_estudiante
-      @estudiante = Estudiante.find(params[:id])
-    end
-    def estudiante_params
-      params.requiere(:estudiante).permit(:nombres, apellidos, matricula)
-    end
+
 end

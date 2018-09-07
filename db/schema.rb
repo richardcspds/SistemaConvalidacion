@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2018_09_04_150605) do
   end
 
   create_table "convalidacion_items", force: :cascade do |t|
-    t.integer "convalidacions_id"
+    t.integer "convalidacion_id"
     t.integer "asignaturas_id"
     t.string "asignatura_procedencia_clave"
     t.string "asignatura_procedencia_nombre"
@@ -47,18 +47,20 @@ ActiveRecord::Schema.define(version: 2018_09_04_150605) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["asignaturas_id"], name: "index_convalidacion_items_on_asignaturas_id"
-    t.index ["convalidacions_id"], name: "index_convalidacion_items_on_convalidacions_id"
+    t.index ["convalidacion_id"], name: "index_convalidacion_items_on_convalidacion_id"
   end
 
   create_table "convalidacions", force: :cascade do |t|
-    t.date "fecha_realizacion"
-    t.string "universidad_procedencia"
+    t.integer "universidad_home_id"
+    t.integer "universidad_procedencia_id"
+    t.integer "convalidacion_item_id"
     t.integer "estudiante_id"
-    t.integer "asignatura_id"
+    t.integer "universidad_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["asignatura_id"], name: "index_convalidacions_on_asignatura_id"
+    t.index ["convalidacion_item_id"], name: "index_convalidacions_on_convalidacion_item_id"
     t.index ["estudiante_id"], name: "index_convalidacions_on_estudiante_id"
+    t.index ["universidad_id"], name: "index_convalidacions_on_universidad_id"
   end
 
   create_table "estudiantes", force: :cascade do |t|

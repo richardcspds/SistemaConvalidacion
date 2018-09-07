@@ -1,14 +1,51 @@
-<p id="notice"><%= notice %></p>
+<br><br>
 
 <p>
-  <strong>Convalida:</strong>
-  <%= @convalidacion.convalida %>
+  <strong>Estudiante:</strong>
+  <%= Estudiante.find(@convalidacion.estudiante_id).nombres %> <%= Estudiante.find(@convalidacion.estudiante_id).apellidos %>
+  (<%= Estudiante.find(@convalidacion.estudiante_id).matricula %>)
 </p>
 
 <p>
-  <strong>Asignatura:</strong>
-  <%= @convalidacion.asignatura %>
+  <strong>Universidad de procedencia:</strong>
+  <%= Universidad.find(@convalidacion.universidad_procedencia_id).descripcion %> (<%= Universidad.find(@convalidacion.universidad_procedencia_id).nombre %>)
 </p>
+<p>
+  <strong>Fecha de realizacion:</strong>
+  <%= @convalidacion.created_at %>
+</p>
+
+<div id='info_tables_convalidacion_items_id'>
+  <h3>Detalles de la Convalidacion</h3>
+  <div>
+    <table class='table table-hover'>   
+      <thead>
+          <tr>
+              <th>Clave</th>
+              <th>Asig. Convalidables</th>
+              <th>Calificacion</th>
+              <th>CR</th>
+              <th>Clave</th>
+              <th>Asig. Convalidadas</th>
+              <th>CR</th>                        
+          </tr>
+      </thead>
+
+      <tbody>
+          <%= ConvalidacionItem.where(convalidacion_id: @convalidacion.id).each do | item | %>
+            <tr> 
+                <td><%= item.asignatura_procedencia_clave %></td>
+                <td><%= item.asignatura_procedencia_nombre %></td>
+                <td><%= item.asignatura_procedencia_calificacion %></td>
+                <td><%= item.asignatura_procedencia_creditos %></td>
+                <td><%= item.asignatura_local_clave %></td>
+                <td><%= item.asignatura_local_nombre %></td>
+                <td><%= item.asignatura_local_creditos %></td>
+            </tr>
+          <% end %>
+      </tbody>
+    </table>    
+  </div>
 
 <%= link_to 'Edit', edit_convalidacion_path(@convalidacion) %> |
 <%= link_to 'Back', convalidacions_path %>

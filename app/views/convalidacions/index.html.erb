@@ -14,13 +14,13 @@
   <tbody>
     <% @convalidacions.each do |convalidacion| %>
       <tr>
-        <td><%= convalidacion.estudiante.nombres convalidacion.estudiante.apellidos %></td>
-        <td><%= convalidacion.estudiante.matricula %></td>
-        <td><%= convalidacion.universidad_procedencia %></td>
-        <td><%= convalidacion.fecha_realizacion %></td>
-        <td><%= link_to 'Show', convalidacion %></td>
-        <td><%= link_to 'Edit', edit_convalidacion_path(convalidacion) %></td>
-        <td><%= link_to 'Destroy', convalidacion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= Estudiante.find(convalidacion.estudiante_id).nombres %> <%= Estudiante.find(convalidacion.estudiante_id).apellidos %></td>
+        <td><%= Estudiante.find(convalidacion.estudiante_id).matricula %></td>
+        <td><%= Universidad.find(convalidacion.universidad_procedencia_id).descripcion %></td>
+        <td><%= convalidacion.created_at %></td>
+        <td><%= link_to 'Ver', convalidacion %></td>
+        <td><%= link_to 'Editar', edit_convalidacion_path(convalidacion) %></td>
+        <td><%= link_to 'Eliminar', convalidacion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

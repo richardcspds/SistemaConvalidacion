@@ -1,7 +1,7 @@
 class CreateConvalidacionItems < ActiveRecord::Migration[5.2]
   def change
     create_table :convalidacion_items do |t|
-      t.references :convalidacions, foreign_key: true
+      t.references :convalidacion, foreign_key: true
       t.references :asignaturas, foreign_key: true
       t.string :asignatura_procedencia_clave
       t.string :asignatura_procedencia_nombre

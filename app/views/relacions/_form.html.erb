@@ -11,126 +11,127 @@
     </div>
   <% end %>
 
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title">Información Universidad Local</h3>
-    </div>
-    <div class="panel-body">
-      <form>
-        <div class="form-group">
-          <label for="searchHome">Buscar</label>
-          <div class="row">
-            <div class="col-lg-6">
-              <div class="input-group">
-                <input type="text" class="form-control" aria-label="...">
-                <div class="input-group-btn">
-                  <button type="button" class="form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Por: <span class="caret"></span></button>
-                  <ul class="dropdown-menu dropdown-menu-right">
-                    <li><a href="#">Carrera</a></li>
-                    <li><a href="#">Pensum</a></li>
-                    <li><a href="#">Asignatura</a></li>
-                  </ul>
-                  <button type="button" class="btn btn-default" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                  </button>
-                </div><!-- /btn-group -->
-              </div><!-- /input-group -->
-            </div><!-- /.col-lg-6 -->
-          </div><!-- /.row -->
-        </div>
-
-        <div class="form-group">
-          <label for="universidad_local_id">Universidad local</label>
-          <%= form.collection_select :universidad_local_id, Universidad.all, :id, :nombre, {:include_blank => true}, {:class => "form-control"} %>
-        </div>
-    
-        <div class="form-group">
-          <label for="carrera_local_id">Carrera</label>
-          <%= form.grouped_collection_select :carrera_local_id, Universidad.order(:nombre), :carreras, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
-        </div>
-
-        <div class="form-group">
-          <label for="pensum_local_id">Pensum</label>
-          <%= form.grouped_collection_select :pensum_local_id, Carrera.order(:nombre), :pensums, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
-        </div>
-
-        <div class="form-inline">
-          <label for="asignatura_home_id">Asignatura</label>
-          <%= form.grouped_collection_select :asignatura_home_id, Pensum.order(:nombre), :asignaturas, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
-          <label for="asignatura_home_creditos_id">creditos</label>
-          <input type="text" class="form-control" id="asignatura_home_creditos_id" value='' readonly>
-        </div>      
-    
-
-
-         <div class="panel panel-default">
-          <div class="panel-heading">
-            <h3 class="panel-title">Información Universidad de Procedencia</h3>
+  <form>      
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Información Universidad Local</h3>
+      </div>      
+      <div class="panel-body">        
+          <div class="hidden">
+            <label for="searchHome">Buscar</label>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="input-group">
+                  <input type="text" class="form-control" aria-label="...">
+                  <div class="input-group-btn">
+                    <button type="button" class="form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar Por: <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <li><a href="#">Carrera</a></li>
+                      <li><a href="#">Pensum</a></li>
+                      <li><a href="#">Asignatura</a></li>
+                    </ul>
+                    <button type="button" class="btn btn-default" aria-label="Left Align">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                  </div><!-- /btn-group -->
+                </div><!-- /input-group -->
+              </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
           </div>
-          <div class="panel-body">
-            <div class="form-group">
-              <label for="searchProc">Buscar por:</label>
-              <div class="row">
-                <div class="col-lg-6">
-                  <div class="input-group">
-                    <input type="text" class="form-control" aria-label="...">
-                    <div class="input-group-btn">
-                      <button type="button" class="form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar por:<span class="caret"></span></button>
-                      <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a href="#">Universidad</a></li>
-                        <li><a href="#">Carrera</a></li>
-                        <li><a href="#">Pensum</a></li>
-                        <li><a href="#">Asignatura</a></li>
-                      </ul>
-                      <button type="button" class="btn btn-default" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                      </button>
-                    </div><!-- /btn-group -->
-                  </div><!-- /input-group -->
-                </div><!-- /.col-lg-6 -->
-              </div><!-- /.row -->
-            </div>
 
-        <div class="form-group">
-          <label for="universidad_procedencia_id">Universidad Procedencia</label>
-          <%= form.collection_select :universidad_procedencia_id, Universidad.all, :id, :nombre, {:include_blank => true}, {:class => "form-control"} %>
-        </div>
-        <div class="form-group">
-          <label for="carrera_procedencia_id">Carrera</label>
-          <%= form.grouped_collection_select :carrera_procedencia_id, Universidad.order(:nombre), :carreras, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
-        </div>
+          <div class="form-group">
+            <label for="universidad_local_id">Universidad local</label>
+            <%= form.collection_select :universidad_local_id, Universidad.all, :id, :nombre, {:include_blank => true}, {:class => "form-control"} %>
+          </div>
+      
+          <div class="form-group">
+            <label for="carrera_local_id">Carrera</label>
+            <%= form.grouped_collection_select :carrera_local_id, Universidad.order(:nombre), :carreras, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
+          </div>
 
-        <div class="form-group">
-          <label for="pensum_procedencia_id">Pensum</label>
-          <%= form.grouped_collection_select :pensum_procedencia_id, Carrera.order(:nombre), :pensums, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
-        </div>
+          <div class="form-group">
+            <label for="pensum_local_id">Pensum</label>
+            <%= form.grouped_collection_select :pensum_local_id, Carrera.order(:nombre), :pensums, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
+          </div>
 
-        <div class="form-inline">
-          <label for="asignatura_a_procedencia_id">Asignatura</label>
-          <%= form.grouped_collection_select :asignatura_a_procedencia_id, Pensum.order(:nombre), :asignaturas, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
-          <label for="asignatura_a_procedencia_creditos_id">creditos</label>
-          <input type="text" class="form-control" id="asignatura_a_procedencia_creditos_id" value=''>
+          <div class="form-inline">
+            <label for="asignatura_home_id">Asignatura</label>
+            <%= form.grouped_collection_select :asignatura_home_id, Pensum.order(:nombre), :asignaturas, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
+            <label for="asignatura_home_creditos_id">creditos</label>
+            <input type="text" class="form-control" id="asignatura_home_creditos_id" value='' readonly>
+          </div>
+        </div>   
+      </div>
+    
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Información Universidad de Procedencia</h3>
         </div>
+        <div class="panel-body">
+          <div class="hidden">
+            <label for="searchProc">Buscar por:</label>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="input-group">
+                  <input type="text" class="form-control" aria-label="...">
+                  <div class="input-group-btn">
+                    <button type="button" class="form-control" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Buscar por:<span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                      <li><a href="#">Universidad</a></li>
+                      <li><a href="#">Carrera</a></li>
+                      <li><a href="#">Pensum</a></li>
+                      <li><a href="#">Asignatura</a></li>
+                    </ul>
+                    <button type="button" class="btn btn-default" aria-label="Left Align">
+                      <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                  </div><!-- /btn-group -->
+                </div><!-- /input-group -->
+              </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+          </div>
 
-        <div class="form-inline">
-          <label for="asignatura_b_procedencia_id">Asignatura</label>
-          <%= form.grouped_collection_select :asignatura_b_procedencia_id, Pensum.order(:nombre), :asignaturas, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
-          <label for="asignatura_b_procedencia_creditos_id">creditos</label>
-          <input type="text" class="form-control" id="asignatura_b_procedencia_creditos_id" value=''>
+          <div class="form-group">
+            <label for="universidad_procedencia_id">Universidad Procedencia</label>
+            <%= form.collection_select :universidad_procedencia_id, Universidad.all, :id, :nombre, {:include_blank => true}, {:class => "form-control"} %>
+          </div>
+          <div class="form-group">
+            <label for="carrera_procedencia_id">Carrera</label>
+            <%= form.grouped_collection_select :carrera_procedencia_id, Universidad.order(:nombre), :carreras, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
+          </div>
+
+          <div class="form-group">
+            <label for="pensum_procedencia_id">Pensum</label>
+            <%= form.grouped_collection_select :pensum_procedencia_id, Carrera.order(:nombre), :pensums, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
+          </div>
+
+          <div class="form-inline">
+            <label for="asignatura_a_procedencia_id">Asignatura</label>
+            <%= form.grouped_collection_select :asignatura_a_procedencia_id, Pensum.order(:nombre), :asignaturas, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
+            <label for="asignatura_a_procedencia_creditos_id">creditos</label>
+            <input type="text" class="form-control" id="asignatura_a_procedencia_creditos_id" value=''>
+          </div>
+
+          <div class="form-inline">
+            <label for="asignatura_b_procedencia_id">Asignatura</label>
+            <%= form.grouped_collection_select :asignatura_b_procedencia_id, Pensum.order(:nombre), :asignaturas, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
+            <label for="asignatura_b_procedencia_creditos_id">creditos</label>
+            <input type="text" class="form-control" id="asignatura_b_procedencia_creditos_id" value=''>
+          </div>  
         </div>
-      </form>
-    </div>
-  </div>
+      </div>     
 
-  <div class="actions">
-    <%= form.submit class: "btn btn-primary"%>
-  </div>
+      <div class="actions">
+        <%= form.submit class: "btn btn-primary"%>
+      </div>
+    </div>    
+  </form>
+
+  
 
   <br><br>
   
-  <input id="crear_relacion_button_id" name="commit" class="btn btn-default" type="submit" value="Crear relación" />
-
-
+  
   <div id= 'asignaturas_details_id' data_asignaturas= "<%= @asignaturas %>">
   </div>
 <% end %>

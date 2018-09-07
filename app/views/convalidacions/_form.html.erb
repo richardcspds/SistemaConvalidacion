@@ -16,19 +16,25 @@
       <h3 class="panel-title">Información General</h3>
     </div>
     <div class="panel-body">
-      <form>
-        <%= fields_for :estudiantes, @estudiantes do |e| %> 
-          <div class="form_group">
-            <div class="form-inline">
-              <label for="estudiante_nombres">Nombres</label>
-              <input type="text" class="form-control" id="estudiante_nombres" placeholder="Escribir Nombres" >
-              <label for="estudiante_apellidos">Apellidos</label>
-              <input type="text" class="form-control" id="estudiante_apellidos" placeholder="Escribir Apellidos" >
-              <label for="estudiante_matricula">Matricula</label>
-              <input type="text" class="form-control" id="estudiante_matricula" placeholder="Escribir Matricula" value:"" >
-            </div>
+      <form>        
+        <div class="form_group">
+          <div class="page-header">
+            <h3><small>Información de Estudiante</small></h3>
           </div>
-        <% end %>
+          <div class="form-inline">      
+            <%= form.fields_for :estudiante do |e| %> 
+              <%= e.label :nombres , class:"form-control" %>
+              <%= e.text_field :nombres , class:"form-control" %>
+
+              <%= e.label :apellidos , class:"form-control" %>
+              <%= e.text_field :apellidos , class:"form-control" %>
+
+              <%= e.label :matricula , class:"form-control" %>
+              <%= e.text_field :matricula , class:"form-control" %>
+            <% end %>
+          </div>
+        </div>
+        
 
         <div class="form-inline">
           <div class="form-group">
@@ -38,7 +44,7 @@
 
             <div class="form-inline">
               <%= form.label :universidad_home_id %>
-              <%= form.collection_select :universidad_home_id, Universidad.all, :id, :nombre, {:selected => 'UTESA', :include_blank => true}, {:class => "form-control"} %>
+              <%= form.collection_select :universidad_home_id, Universidad.all, :id, :nombre, {:include_blank => true}, {:class => "form-control"} %>
               <div class="form-group">
                 <%= form.label :carrera_home_id %>
                 <%= form.grouped_collection_select :carrera_home_id, Universidad.order(:nombre), :carreras, :nombre, :id,  :nombre , {:include_blank => true}, {:class => "form-control"} %>
@@ -71,37 +77,73 @@
             </div>
           </div>
         </div>
+        
+        <div class="page-header">
+          <h3><small>Seleccione las asignaturas de procedencia a convalidar</small></h3>
+        </div>
+
+        <div class="form-inline">
+          <div class="form-group">
+            <label for="asignaturas_home_choose">Asignaturas Locales</label>
+            <div class="form-inline">
+              <div class="field">
+                <select multiple class="list-group" id="asignaturas_home_choose">
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="asignaturas_procedencia_choose">Asignaturas de procedencia</label>
+            <div class="form-inline">
+              <div class="field">
+                <select multiple class="list-group" id="asignaturas_procedencia_choose">
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <input type="Action" id="convalidar_seleccion_button_id" name="convalidar_seleccion_button" class="btn btn-primary" value="Convalidar Selección" >
+        
+        <br><br> 
+               
+
+        <div class="form-group">
+          <h3>Reporte de Convalidación    <span class="glyphicon glyphicon-print" aria-hidden="true"></span></h3>
+          
+          <%= form.fields_for :convalidacion_items do | item | %>
+            <div id="hidden_items_fields_div_id">
+            
+            </div>
+          <% end %>
+
+          <table id='asignaturas_convalidables_table_id' class="table table-hover">
+              <thead>
+                  <tr>
+                      <th><%=  %>Clave</th>
+                      <th><%=  %>Asig. Convalidables</th>
+                      <th><%=  %>Calificacion</th>
+                      <th><%=  %>CR</th>
+                      <th><%=  %>Clave</th>
+                      <th><%=  %>Asig. Convalidadas</th>
+                      <th><%=  %>CR</th>                                      
+                  </tr>
+              </thead>
+                      
+              <tbody id='asignaturas_convalidables_table_tbody_id'>
+              
+              </tbody>
+          </table>      
+              
+        </div>
+
+        <div class="actions">
+          <input type="submit" name="commit" value="Create Convalidacion" class="btn btn-success" data-disable-with="Create Convalidacion">
+          <%= form.submit "Create Convalidacion", class: "btn btn-success"%>
+        </div>
+
       </form>
     </div>
-  </div>
-
-  <div class="form-inline">
-    <div class="form-group">
-      <label for="asignaturas_home_choose">Asignaturas Locales</label>
-      <div class="form-inline">
-        <div class="field">
-          <select multiple class="list-group" id="asignaturas_home_choose">
-          </select>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="asignaturas_procedencia_choose">Asignaturas de procedencia</label>
-      <div class="form-inline">
-        <div class="field">
-          <select multiple class="list-group" id="asignaturas_procedencia_choose">
-          </select>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <input type="submit" id="convalidar_seleccion_button_id" name="convalidar_seleccion_button" class="btn btn-primary" value="Convalidar Seleccion" >
-
-  <br><br>
-
-  <div class="actions">
-  <%= form.submit class: "btn btn-success"%>
   </div>
 
 <% end %>

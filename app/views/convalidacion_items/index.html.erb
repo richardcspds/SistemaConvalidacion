@@ -2,18 +2,17 @@
 
 <h1>Convalidacion Items</h1>
 
-<table>
+<table class="table table-hover">
   <thead>
     <tr>
-      <th>Convalidacions</th>
-      <th>Asignaturas</th>
-      <th>Asignatura procedencia clave</th>
-      <th>Asignatura procedencia nombre</th>
-      <th>Asignatura procedencia calificacion</th>
-      <th>Asignatura procedencia creditos</th>
-      <th>Asignatura local clave</th>
-      <th>Asignatura local nombre</th>
-      <th>Asignatura local creditos</th>
+      <th>Convalidacion ID</th>
+      <th>Clave</th>
+      <th>Asig. Convalidables</th>
+      <th>Calificacion</th>
+      <th>CR</th>
+      <th>Clave</th>
+      <th>Asig. Convalidadas</th>
+      <th>CR</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -21,8 +20,7 @@
   <tbody>
     <% @convalidacion_items.each do |convalidacion_item| %>
       <tr>
-        <td><%= convalidacion_item.convalidacions %></td>
-        <td><%= convalidacion_item.asignaturas %></td>
+        <td><%= convalidacion_item.convalidacion_id %></td>
         <td><%= convalidacion_item.asignatura_procedencia_clave %></td>
         <td><%= convalidacion_item.asignatura_procedencia_nombre %></td>
         <td><%= convalidacion_item.asignatura_procedencia_calificacion %></td>
