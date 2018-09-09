@@ -1,5 +1,9 @@
 <br><br>
 
+<h4><span class="glyphicon glyphicon-print" aria-hidden="false" id='imprimir_convalidacion'>  <%= link_to 'Imprimir Convalidacion', convalidacion_path(format: :pdf) %></span></h4>
+
+<br>
+
 <p>
   <strong>Estudiante:</strong>
   <%= Estudiante.find(@convalidacion.estudiante_id).nombres %> <%= Estudiante.find(@convalidacion.estudiante_id).apellidos %>
@@ -16,8 +20,7 @@
 </p>
 
 <div id='info_tables_convalidacion_items_id'>
-  <h3>Detalles de la Convalidacion</h3>
-  <div>
+  <h3>Detalles de la Convalidacion</h3>  
     <table class='table table-hover'>   
       <thead>
           <tr>
@@ -32,7 +35,7 @@
       </thead>
 
       <tbody>
-          <%= ConvalidacionItem.where(convalidacion_id: @convalidacion.id).each do | item | %>
+          <%- ConvalidacionItem.where(convalidacion_id: @convalidacion.id).each do | item | %>
             <tr> 
                 <td><%= item.asignatura_procedencia_clave %></td>
                 <td><%= item.asignatura_procedencia_nombre %></td>
@@ -45,7 +48,6 @@
           <% end %>
       </tbody>
     </table>    
-  </div>
 
 <%= link_to 'Edit', edit_convalidacion_path(@convalidacion) %> |
 <%= link_to 'Back', convalidacions_path %>

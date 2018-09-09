@@ -1,9 +1,21 @@
 <h1>Convalidaciones Realizadas</h1>
 
-<table class='table table-hover'>
+<br>
+
+<%= search_form_for @search do |f| %>
+  <div class="form-inline">
+    <div class='field'>
+      <%= f.label :estudiante_nombres_cont, "Nombre contiene:" %>
+      <%= f.text_field :estudiante_nombres_cont, class: "form-control" %>
+      <input class="btn btn-primary" type="submit" value="Buscar">
+    </div>
+  </div>
+<% end %>
+
+<table class='table table-hover'> 
   <thead>
     <tr>
-      <th>Estudiante</th>
+      <th><%= sort_link @search, :estudiante_id, "Estudiante"%></th>
       <th>Matricula</th>
       <th>Universidad de procedencia</th>
       <th>Fecha</th>

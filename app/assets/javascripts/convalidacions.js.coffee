@@ -183,10 +183,10 @@ $(document).on "turbolinks:load", ->
 
                     $.each(asignaturas, (i,asignatura_h) ->
                       if (relacion.asignatura_home_id.toString() == asignatura_h.id.toString())
-                        markup = '<tr><td>' + asignatura.clave + '</td><td>' + asignatura.nombre + '</td><td contenteditable="true"></td><td>' + asignatura.creditos + \
+                        markup = '<tr><td>' + asignatura.clave + '</td><td>' + asignatura.nombre + '</td><td><input type="text_field" class="form-control" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_procedencia_calificacion]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_procedencia_calificacion"></td><td>' + asignatura.creditos + \
                                  '</td><td>' + asignatura_h.clave + '</td><td>' + asignatura_h.nombre + '</td><td>' + asignatura_h.creditos + '</td></tr>'
                         hidden = '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_procedencia_clave]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_procedencia_clave" value="'+ asignatura.clave + '">'+\
-                                 '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_procedencia_nombre]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_procedencia_nombre" value="'+ asignatura.nombre + '">'+\
+                                 '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_procedencia_nombre]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_procedencia_nombre" value="'+ asignatura.nombre + '">'+\                                
                                  '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_procedencia_creditos]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_procedencia_creditos" value="'+ asignatura.creditos + '">'+\
                                  '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_local_clave]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_local_clave" value="'+ asignatura_h.clave + '">'+\
                                  '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_local_nombre]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_local_nombre" value="'+ asignatura_h.nombre + '">'+\
@@ -204,7 +204,7 @@ $(document).on "turbolinks:load", ->
                     console.log('existe relacion 1-2')
                     $.each(asignaturas, (i,asignatura_h) ->
                       if (relacion.asignatura_home_id.toString() == asignatura_h.id.toString())
-                        markup = '<tr><td>' + asignatura.clave + '</td><td>' + asignatura.nombre + '</td><td contenteditable="true"></td><td>' + asignatura.creditos + \
+                        markup = '<tr><td>' + asignatura.clave + '</td><td>' + asignatura.nombre + '</td><td><input type="text_field" class="form-control" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_procedencia_calificacion]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_procedencia_calificacion"></td><td>' + asignatura.creditos + \
                                  '</td><td>' + asignatura_h.clave + '</td><td>' + asignatura_h.nombre + '</td><td>' + asignatura_h.creditos + '</td></tr>'
                         hidden = '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_procedencia_clave]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_procedencia_clave" value="'+ asignatura.clave + '">'+\
                                  '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_procedencia_nombre]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_procedencia_nombre" value="'+ asignatura.nombre + '">'+\

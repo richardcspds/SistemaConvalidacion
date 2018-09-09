@@ -106,16 +106,14 @@
         <input type="Action" id="convalidar_seleccion_button_id" name="convalidar_seleccion_button" class="btn btn-primary" value="Convalidar Selección" >
         
         <br><br> 
-               
+        <%= form.fields_for :convalidacion_items do | item | %>
+          <div id="hidden_items_fields_div_id">
+          
+          </div>
+        <% end %>
 
         <div class="form-group">
-          <h3>Reporte de Convalidación    <span class="glyphicon glyphicon-print" aria-hidden="true"></span></h3>
-          
-          <%= form.fields_for :convalidacion_items do | item | %>
-            <div id="hidden_items_fields_div_id">
-            
-            </div>
-          <% end %>
+          <h3>Reporte de Convalidación    <span class="glyphicon glyphicon-print" aria-hidden="true"></span></h3>   
 
           <table id='asignaturas_convalidables_table_id' class="table table-hover">
               <thead>

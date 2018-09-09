@@ -4,17 +4,19 @@ class ConvalidacionsController < ApplicationController
   # GET /convalidacions
   # GET /convalidacions.json
   def index
-    @convalidacions = Convalidacion.all
-    respond_to do |format|
-      format.html
-      format.json
-      format.pdf {render template: 'convalidacions/convalidacionpdf', pdf: 'Convalidacionpdf' }
-    end
+    @search = Convalidacion.search(params[:q])
+    @convalidacions = @search.result
+    
   end
 
   # GET /convalidacions/1
   # GET /convalidacions/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf {render template: 'convalidacions/convalidacionpdf', pdf: 'Convalidacionpdf' }
+    end
   end
 
   # GET /convalidacions/new
@@ -33,14 +35,15 @@ class ConvalidacionsController < ApplicationController
   def create
     @convalidacion = Convalidacion.new(convalidacion_params)
 
-    byebug
+    # byebug
     respond_to do |format|
       if @convalidacion.save
         @estudiante = @convalidacion.estudiante
         @convalidacion.convalidacion_items.each do |item|
+          byebug
           @convalidacion_item = item
         end
-        byebug
+        # byebug
         format.html { redirect_to @convalidacion, notice: 'Convalidacion was successfully created.' }
         format.json { render :show, status: :created, location: @convalidacion }
       else
@@ -82,7 +85,7 @@ class ConvalidacionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def convalidacion_params
-      params.require(:convalidacion).permit(:universidad_home_id, :universidad_procedencia_id, :estudiante_id, estudiante_attributes: [:id, :nombres, :apellidos, :matricula],\
+      params.require(:convalidacion).permit(:universidad_home_id, :universidad_procedencia_id, :carrera_home_id, :carrera_procedencia_id, :estudiante_id, estudiante_attributes: [:id, :nombres, :apellidos, :matricula],\
                                             convalidacion_items_attributes: [:id, :convalidacion_id, :asignatura_procedencia_clave, :asignatura_procedencia_nombre,\
                                             :asignatura_procedencia_calificacion, :asignatura_procedencia_creditos, :asignatura_local_clave, :asignatura_local_nombre,\
                                             :asignatura_local_creditos])
