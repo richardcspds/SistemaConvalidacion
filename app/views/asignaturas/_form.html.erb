@@ -1,7 +1,7 @@
 <%= form_with(model: asignatura, local: true) do |form| %>
   <% if asignatura.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(asignatura.errors.count, "error") %> prohibited this asignatura from being saved:</h2>
+      <h2><%= pluralize(asignatura.errors.count, "errores") %> encontrados por lo que no se pudo guardar ésta convalidación:</h2>
 
       <ul>
       <% asignatura.errors.full_messages.each do |message| %>
@@ -45,6 +45,6 @@
 
       
   <div class="actions">
-    <%= form.submit class: "btn btn-primary"%>
+    <%= form.submit "Crear Asignatura", class: "btn btn-primary"%>
   </div>
 <% end %>

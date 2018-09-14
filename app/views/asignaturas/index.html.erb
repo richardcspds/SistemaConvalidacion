@@ -21,6 +21,7 @@
       <th><%= sort_link @search, :nombre, "Nombre" %></th>
       <th>Creditos</th>
       <th><%= sort_link @search, :universidad_id, "Universidad" %></th>
+      <th><%= sort_link @search, :pensum_id, "Pensum" %></th>
       <th colspan="3">Acciones</th>
     </tr>
   </thead>
@@ -32,9 +33,10 @@
         <td><%= asignatura.nombre %></td>
         <td><%= asignatura.creditos %></td>
         <td><%= asignatura.pensum.carrera.universidad.descripcion %> (<%= asignatura.pensum.carrera.universidad.nombre %>)</td>
-        <td><%= link_to 'Show', asignatura %></td>
-        <td><%= link_to 'Edit', edit_asignatura_path(asignatura) %></td>
-        <td><%= link_to 'Destroy', asignatura, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= asignatura.pensum.nombre %></td>
+        <td><%= link_to 'Ver', asignatura %></td>
+        <td><%= link_to 'Editar', edit_asignatura_path(asignatura) %></td>
+        <td><%= link_to 'Eliminar', asignatura, method: :delete, data: { confirm: 'Estás seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -42,4 +44,4 @@
 
 <br>
 
-<%= link_to 'New Asignatura', new_asignatura_path %>
+<%= link_to 'Nueva Asignatura', new_asignatura_path %>
