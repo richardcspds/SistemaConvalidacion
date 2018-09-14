@@ -1,8 +1,13 @@
-<p id="notice"><%= notice %></p>
+<br><br>
 
 <p>
   <strong>Nombre:</strong>
-  <%= @estudiante.nombre %>
+  <%= @estudiante.nombres %>
+</p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @estudiante.apellidos %>
 </p>
 
 <p>
@@ -20,15 +25,6 @@
   <%= @estudiante.telefono %>
 </p>
 
-<p>
-  <strong>Persona:</strong>
-  <%= @estudiante.persona %>
-</p>
 
-<p>
-  <strong>Carrera:</strong>
-  <%= @estudiante.carrera %>
-</p>
-
-<%= link_to 'Edit', edit_estudiante_path(@estudiante) %> |
-<%= link_to 'Back', estudiantes_path %>
+<%= link_to 'Editar', edit_estudiante_path(@estudiante) %> |
+<%= link_to 'Volver', estudiantes_path %>

@@ -44,7 +44,7 @@ class ConvalidacionsController < ApplicationController
           @convalidacion_item = item
         end
         # byebug
-        format.html { redirect_to @convalidacion, notice: 'Convalidacion was successfully created.' }
+        format.html { redirect_to @convalidacion, notice: 'Convalidación creada con éxito.' }
         format.json { render :show, status: :created, location: @convalidacion }
       else
         format.html { render :new }
@@ -58,7 +58,7 @@ class ConvalidacionsController < ApplicationController
   def update
     respond_to do |format|
       if @convalidacion.update(convalidacion_params)
-        format.html { redirect_to @convalidacion, notice: 'Convalidacion was successfully updated.' }
+        format.html { redirect_to @convalidacion, notice: 'Convalidación actualizada con éxito.' }
         format.json { render :show, status: :ok, location: @convalidacion }
       else
         format.html { render :edit }
@@ -72,7 +72,7 @@ class ConvalidacionsController < ApplicationController
   def destroy
     @convalidacion.destroy
     respond_to do |format|
-      format.html { redirect_to convalidacions_url, notice: 'Convalidacion was successfully destroyed.' }
+      format.html { redirect_to convalidacions_url, notice: 'Convalidación eliminada con éxito.' }
       format.json { head :no_content }
     end
   end
@@ -85,7 +85,7 @@ class ConvalidacionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def convalidacion_params
-      params.require(:convalidacion).permit(:universidad_home_id, :universidad_procedencia_id, :carrera_home_id, :carrera_procedencia_id, :estudiante_id, estudiante_attributes: [:id, :nombres, :apellidos, :matricula],\
+      params.require(:convalidacion).permit(:universidad_home_id, :universidad_procedencia_id, :carrera_home_id, :carrera_procedencia_id, :total_creditos_home, :total_creditos_procedencia, :estudiante_id, estudiante_attributes: [:id, :nombres, :apellidos, :matricula],\
                                             convalidacion_items_attributes: [:id, :convalidacion_id, :asignatura_procedencia_clave, :asignatura_procedencia_nombre,\
                                             :asignatura_procedencia_calificacion, :asignatura_procedencia_creditos, :asignatura_local_clave, :asignatura_local_nombre,\
                                             :asignatura_local_creditos])

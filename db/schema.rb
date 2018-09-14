@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 2018_09_04_150605) do
     t.integer "universidad_procedencia_id"
     t.integer "carrera_home_id"
     t.integer "carrera_procedencia_id"
+    t.integer "total_creditos_home"
+    t.integer "total_creditos_procedencia"
     t.integer "convalidacion_item_id"
     t.integer "estudiante_id"
     t.integer "universidad_id"

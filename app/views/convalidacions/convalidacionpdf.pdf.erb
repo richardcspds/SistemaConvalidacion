@@ -30,6 +30,8 @@
             span {font-family:Times,serif;font-weight:bold;text-decoration: none; margin: 2px}
             .inline-item {display: inline;}
             .align-right{float: right;}
+            .bold {font-weight:bold}
+            .boldcenter {font-weight:bold; text-align: center}
 
             /* footer */
             footer{margin-top: 600px; float: center}
@@ -52,7 +54,7 @@
             <div>
                 <div class='inline-item'>
                     <span class='align-left'>MATRICULA:   <%= @convalidacion.estudiante.matricula %></span>
-                    <span class='align-right'>FECHA DE SOLICITUD: <%= @convalidacion.created_at %> </span>
+                    <span class='align-right' Style="padding-right: 15px">FECHA DE SOLICITUD: <%= @convalidacion.created_at.strftime("%d-%m-%Y") %></span>
                 </div>
                 <h4>NOMBRE (S):   <%= @convalidacion.estudiante.nombres %></h4>
                 <h4>APELLIDOS (S):   <%= @convalidacion.estudiante.apellidos %></h4>
@@ -92,6 +94,15 @@
                             <td class="align-center"><%= item.asignatura_local_creditos %></td>
                         </tr>                                         
                     <% end %>
+                    <tr>
+                        <td></td>
+                        <td class="bold">Total Créditos Convalidables:</td>
+                        <td></td>
+                        <td class="boldcenter"><%= @convalidacion.total_creditos_procedencia %></td>
+                        <td></td>
+                        <td class="bold">Total Créditos Convalidados:</td>
+                        <td class="boldcenter"><%= @convalidacion.total_creditos_home %></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

@@ -1,13 +1,13 @@
 <br><br>
 
-<h4><span class="glyphicon glyphicon-print" aria-hidden="false" id='imprimir_convalidacion'>  <%= link_to 'Imprimir Convalidacion', convalidacion_path(format: :pdf) %></span></h4>
+<h4><span class="glyphicon glyphicon-print" aria-hidden="false" id='imprimir_convalidacion'>  <%= link_to 'Imprimir Convalidación', convalidacion_path(format: :pdf) %></span></h4>
 
 <br>
 
 <p>
   <strong>Estudiante:</strong>
   <%= Estudiante.find(@convalidacion.estudiante_id).nombres %> <%= Estudiante.find(@convalidacion.estudiante_id).apellidos %>
-  (<%= Estudiante.find(@convalidacion.estudiante_id).matricula %>)
+  (<%= Estudiante.find(@convalidacion.estudiante_id).matricula %>) <%= link_to 'Editar Estudiante', edit_estudiante_path(@convalidacion.estudiante_id), {:class => "btn btn-primary btn-sm"} %>
 </p>
 
 <p>
@@ -20,7 +20,7 @@
 </p>
 
 <div id='info_tables_convalidacion_items_id'>
-  <h3>Detalles de la Convalidacion</h3>  
+  <h3>Detalles de la Convalidación</h3>  
     <table class='table table-hover'>   
       <thead>
           <tr>
@@ -49,5 +49,5 @@
       </tbody>
     </table>    
 
-<%= link_to 'Edit', edit_convalidacion_path(@convalidacion) %> |
-<%= link_to 'Back', convalidacions_path %>
+<%= link_to 'Editar detalles', edit_convalidacion_path(@convalidacion) %> |
+<%= link_to 'Volver', convalidacions_path %>
