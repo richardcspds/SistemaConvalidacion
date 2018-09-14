@@ -11,6 +11,8 @@ $(document).on "turbolinks:load", ->
     universidad_procedencia_selector = $('#convalidacion_universidad_procedencia_id')
     carreras_procedencia_selector = $('#convalidacion_carrera_procedencia_id')
     pensum_procedencia_selector = $('#convalidacion_pensum_procedencia_id')
+    total_creditos_home_field = $('#convalidacion_total_creditos_home')
+    total_creditos_procedencia_field = $('#convalidacion_total_creditos_procedencia')
 
     # Select Lists
     asignaturas_home_list = $('#asignaturas_home_choose')
@@ -24,6 +26,13 @@ $(document).on "turbolinks:load", ->
 
     # Hidden
     div_hidden_item_fields = $('#hidden_items_fields_div_id')
+
+    # Controllers
+    t_creditos_home = 0
+    t_creditos_procedencia = 0
+    asignaturas_convalidadas_id_list = []
+    asignaturas_convalidar_id_list = []
+    x = 0 # X es la posicion del array para los items.
   
     # default blank university
     universidad_home_selector.prop("selectedIndex", -1)
@@ -117,22 +126,24 @@ $(document).on "turbolinks:load", ->
         });    
 
     pensum_home_selector.change ->
-        $.ajax({
-        dataType: "json",
-        url: '/asignaturas',
-        type: 'GET'
-        success: (data) ->
-          $.each(data, (i, nombre) ->  
-            if (@pensum_id.toString() == pensum_home_selector.val())    
-              markup = '<option class="list-group-item" value="' + @id + '">' + @clave + '  |  ' + @nombre + '  |  CR: ' + @creditos + '<option>'
-              console.log(markup)
-              asignaturas_home_list.append(markup)
-              console.log('added option ' + @nombre + ' to selector with id ' + @id)        
-          )
-          cleanEmptyOptions ->   
-        });
+      asignaturas_home_list.empty()
+      $.ajax({
+      dataType: "json",
+      url: '/asignaturas',
+      type: 'GET'
+      success: (data) ->
+        $.each(data, (i, nombre) ->  
+          if (@pensum_id.toString() == pensum_home_selector.val())    
+            markup = '<option class="list-group-item" value="' + @id + '">' + @clave + '  |  ' + @nombre + '  |  CR: ' + @creditos + '<option>'
+            console.log(markup)
+            asignaturas_home_list.append(markup)
+            console.log('added option ' + @nombre + ' to selector with id ' + @id)        
+        )
+        cleanEmptyOptions ->   
+      });
 
     pensum_procedencia_selector.change ->
+      asignaturas_procedencia_list.empty()
       $.ajax({
       dataType: "json",
       url: '/asignaturas',
@@ -157,7 +168,7 @@ $(document).on "turbolinks:load", ->
       console.log(convalidables)
       markup = ''
       hidden = ''
-      x = 0
+      
 
       $.ajax({
       dataType: "json",
@@ -178,7 +189,8 @@ $(document).on "turbolinks:load", ->
                 # validar si relacion es tipo 1-1
                 if (@tipo_relacion.toString() == '1')
                   # si existe relacion y agregar convalidacion
-                  if((relacion.asignatura_a_procedencia_id.toString() == asignatura.id.toString()) and (relacion.asignatura_home_id.toString() in convalidables))
+                  if((relacion.asignatura_a_procedencia_id.toString() == asignatura.id.toString()) and (relacion.asignatura_home_id.toString() in convalidables) and \
+                      (relacion.asignatura_a_procedencia_id.toString() not in asignaturas_convalidar_id_list) )
                     console.log('existe relacion 1-1 ')
 
                     $.each(asignaturas, (i,asignatura_h) ->
@@ -193,14 +205,25 @@ $(document).on "turbolinks:load", ->
                                  '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_local_creditos]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_local_creditos" value="'+ asignatura_h.creditos + '">'
                         console.log(markup)
                         x = x + 1
+                        asignaturas_convalidadas_id_list.push(asignatura_h.id.toString())
+                        asignaturas_convalidar_id_list.push(relacion.asignatura_a_procedencia_id.toString())
+                        t_creditos_home = t_creditos_home + asignatura_h.creditos
+                        t_creditos_procedencia = t_creditos_procedencia + asignatura.creditos
+                        console.log('total creditos locales ' + t_creditos_home)
+                        console.log('total creditos procedencia ' + t_creditos_procedencia)
+                        total_creditos_home_field.val(t_creditos_home) 
+                        total_creditos_procedencia_field.val(t_creditos_procedencia)
                         asignaturas_convalidables_table_body.append(markup)
                         div_hidden_item_fields.append(hidden)                    
                     )
+                  else
+                    console.log('Convalidacion ya fue agregada')
                 # validar si relacion es tipo 1-2
                 else if (@tipo_relacion.toString() == '2')
                   # si existe relacion y agregar convalidacion
-                  if(((relacion.asignatura_a_procedencia_id.toString() == asignatura.id.toString()) and (relacion.asignatura_b_procedencia_id.toString() in selected) and (relacion.asignatura_home_id.toString() in convalidables)) \
-                      or ((relacion.asignatura_b_procedencia_id.toString() == asignatura.id.toString()) and (relacion.asignatura_a_procedencia_id.toString() in selected) and (relacion.asignatura_home_id.toString() in convalidables)))
+                  if((((relacion.asignatura_a_procedencia_id.toString() == asignatura.id.toString()) and (relacion.asignatura_b_procedencia_id.toString() in selected) and (relacion.asignatura_home_id.toString() in convalidables)) \
+                      or ((relacion.asignatura_b_procedencia_id.toString() == asignatura.id.toString()) and (relacion.asignatura_a_procedencia_id.toString() in selected) and (relacion.asignatura_home_id.toString() in convalidables)))\
+                      and (asignatura.id.toString() not in asignaturas_convalidar_id_list))
                     console.log('existe relacion 1-2')
                     $.each(asignaturas, (i,asignatura_h) ->
                       if (relacion.asignatura_home_id.toString() == asignatura_h.id.toString())
@@ -212,11 +235,24 @@ $(document).on "turbolinks:load", ->
                                  '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_local_clave]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_local_clave" value="'+ asignatura_h.clave + '">'+\
                                  '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_local_nombre]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_local_nombre" value="'+ asignatura_h.nombre + '">'+\
                                  '<input type="hidden" name="convalidacion[convalidacion_items_attributes][' + x.toString() + '][asignatura_local_creditos]" id="convalidacion_convalidacion_items_attributes_' + x.toString() + '_asignatura_local_creditos" value="'+ asignatura_h.creditos + '">'
-                        console.log(markup)
+                        console.log(markup)                                                                    
+                        if asignatura_h.id.toString() in asignaturas_convalidadas_id_list
+                          t_creditos_home = t_creditos_home
+                        else
+                          t_creditos_home = t_creditos_home + asignatura_h.creditos 
+                          asignaturas_convalidadas_id_list.push(asignatura_h.id.toString()) 
+                        t_creditos_procedencia = t_creditos_procedencia + asignatura.creditos                         
                         x = x + 1
+                        asignaturas_convalidar_id_list.push(asignatura.id.toString())
+                        console.log('total creditos locales ' + t_creditos_home)
+                        console.log('total creditos procedencia ' + t_creditos_procedencia)
+                        total_creditos_home_field.val(t_creditos_home)
+                        total_creditos_procedencia_field.val(t_creditos_procedencia)
                         asignaturas_convalidables_table_body.append(markup)     
-                        div_hidden_item_fields.append(hidden)                
-                    )                  
+                        div_hidden_item_fields.append(hidden)                                        
+                    )
+                  else 
+                    console.log('Asignaturas ya relacionadas')                  
               )
             });                             
         )

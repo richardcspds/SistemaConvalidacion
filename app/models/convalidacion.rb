@@ -10,8 +10,10 @@ class Convalidacion < ApplicationRecord
   accepts_nested_attributes_for :convalidacion_items
                                 
 
-  validates :universidad_home_id, presence: true 
+  validates :universidad_home_id, presence: true
   validates :universidad_procedencia_id, presence:true
-
+  
   validates_associated :convalidacion_items
+
+
 end

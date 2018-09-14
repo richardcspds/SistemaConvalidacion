@@ -6,6 +6,6 @@ class Estudiante < ApplicationRecord
 
   validates :nombres, presence: true
   validates :apellidos, presence: true
-  validates :matricula, presence: true  
+  validates :matricula, presence: true
   
 end

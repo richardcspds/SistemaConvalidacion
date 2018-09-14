@@ -31,3 +31,16 @@
 
 en:
   hello: "Hello world"
+  activerecords:
+    attributes:
+      convalidacion:
+        universidad_home_id: "Universidad Local"
+        universidad_procedencia_id: "Universidad de Procedencia"
+    errors:
+      models:
+        convalidacion:
+          attributes:
+            universidad_home_id:
+              blank: "No puede estar en blanco"
+            universidad_procedencia_id:
+              blank: "No puede estar en blanco"

@@ -1,7 +1,7 @@
 <%= form_with(model: convalidacion, local: true) do |form| %>
   <% if convalidacion.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(convalidacion.errors.count, "error") %> prohibited this convalidacion from being saved:</h2>
+      <h2><%= pluralize(convalidacion.errors.count, "errores") %> encontrados por lo que no se pudo guardar ésta convalidación:</h2>
 
       <ul>
       <% convalidacion.errors.full_messages.each do |message| %>
@@ -87,7 +87,7 @@
             <label for="asignaturas_home_choose">Asignaturas Locales</label>
             <div class="form-inline">
               <div class="field">
-                <select multiple class="list-group" id="asignaturas_home_choose">
+                <select style="width: 400px; height: 250px" multiple class="list-group" id="asignaturas_home_choose">
                 </select>
               </div>
             </div>
@@ -96,7 +96,7 @@
             <label for="asignaturas_procedencia_choose">Asignaturas de procedencia</label>
             <div class="form-inline">
               <div class="field">
-                <select multiple class="list-group" id="asignaturas_procedencia_choose">
+                <select style="width: 400px; height: 250px" multiple class="list-group" id="asignaturas_procedencia_choose">
                 </select>
               </div>
             </div>
@@ -113,7 +113,7 @@
         <% end %>
 
         <div class="form-group">
-          <h3>Reporte de Convalidación    <span class="glyphicon glyphicon-print" aria-hidden="true"></span></h3>   
+          <h3>Reporte de Convalidación</h3>   
 
           <table id='asignaturas_convalidables_table_id' class="table table-hover">
               <thead>
@@ -131,13 +131,20 @@
               <tbody id='asignaturas_convalidables_table_tbody_id'>
               
               </tbody>
-          </table>      
-              
+          </table>
+
+          <div class="form-inline">
+            <%= form.label :total_creditos_procedencia, 'Total de Creditos convalidables' , class:"form-control"  %>
+            <%= form.text_field :total_creditos_procedencia , class:"form-control", :readonly => true %>  
+            <%= form.label :total_creditos_home,  'Total de Creditos convalidados' , class:"form-control" %>
+            <%= form.text_field :total_creditos_home , class:"form-control", :readonly => true %>   
+          <div>
         </div>
 
+        <br>
+        
         <div class="actions">
-          <input type="submit" name="commit" value="Create Convalidacion" class="btn btn-success" data-disable-with="Create Convalidacion">
-          <%= form.submit "Create Convalidacion", class: "btn btn-success"%>
+          <input type="submit" name="commit" value="Crear Convalidación" class="btn btn-success" data-disable-with="Procesando...">          
         </div>
 
       </form>
