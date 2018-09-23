@@ -1,7 +1,7 @@
 <%= form_with(model: carrera, local: true) do |form| %>
   <% if carrera.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(carrera.errors.count, "error") %> prohibited this carrera from being saved:</h2>
+      <h2><%= pluralize(carrera.errors.count, "errores") %> encontrados por lo que no se pudo guardar ésta carrera:</h2>
 
       <ul>
       <% carrera.errors.full_messages.each do |message| %>
@@ -24,6 +24,6 @@
   <br>
       
   <div class="actions">
-    <%= form.submit class: "btn btn-primary" %>
+    <%= form.submit "Procesar Carrera", class: "btn btn-primary" %>
   </div>
 <% end %>

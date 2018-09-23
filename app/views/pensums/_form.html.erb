@@ -1,7 +1,7 @@
 <%= form_with(model: pensum, local: true) do |form| %>
   <% if pensum.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(pensum.errors.count, "error") %> prohibited this pensum from being saved:</h2>
+      <h2><%= pluralize(pensum.errors.count, "errores") %> encontrados por lo que no se pudo guardar éste pensum:</h2>
 
       <ul>
       <% pensum.errors.full_messages.each do |message| %>
@@ -19,7 +19,7 @@
         
   <div class="field">
     <%= form.label :date %>
-    <%= form.date_select :date, class: "form-control" %>
+    <%= form.date_select :date, :class => "form-control" %>
   </div>
   <br>
 
@@ -37,6 +37,6 @@
   <br>
 
   <div class="actions">
-    <%= form.submit class: "btn btn-primary" %>
+    <%= form.submit "Procesar Pensum", class: "btn btn-primary" %>
   </div>
 <% end %>

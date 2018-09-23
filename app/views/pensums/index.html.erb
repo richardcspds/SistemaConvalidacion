@@ -32,9 +32,9 @@
         <td><%= pensum.carrera.nombre %></td>
         <td><%= pensum.nombre %></td>
         <td><%= pensum.date %></td>
-        <td><%= link_to 'Show', pensum %></td>
-        <td><%= link_to 'Edit', edit_pensum_path(pensum) %></td>
-        <td><%= link_to 'Destroy', pensum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Ver', pensum %></td>
+        <td><%= link_to 'Editar', edit_pensum_path(pensum) %></td>
+        <td><%= link_to 'Borrar', pensum, method: :delete, data: { confirm: '¿Está Seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -42,4 +42,4 @@
 
 <br>
 
-<%= link_to 'New Pensum', new_pensum_path %>
+<%= link_to 'Nuevo Pensum', new_pensum_path %>

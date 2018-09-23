@@ -16,7 +16,7 @@
   <thead>
     <tr>
       <th><%= sort_link @search, :estudiante_id, "Estudiante"%></th>
-      <th>Matricula</th>
+      <th>Matrícula</th>
       <th>Universidad de procedencia</th>
       <th>Fecha</th>
       <th colspan="2">Acciones</th>
@@ -29,7 +29,7 @@
         <td><%= Estudiante.find(convalidacion.estudiante_id).nombres %> <%= Estudiante.find(convalidacion.estudiante_id).apellidos %></td>
         <td><%= Estudiante.find(convalidacion.estudiante_id).matricula %></td>
         <td><%= Universidad.find(convalidacion.universidad_procedencia_id).descripcion %></td>
-        <td><%= convalidacion.created_at %></td>
+        <td><%= convalidacion.created_at.strftime("%d-%m-%Y") %></td>
         <td><%= link_to 'Ver', convalidacion %></td>
         <td><%= link_to 'Eliminar', convalidacion, method: :delete, data: { confirm: '¿Está Seguro?' } %></td>
       </tr>

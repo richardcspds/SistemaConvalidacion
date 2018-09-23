@@ -1,7 +1,7 @@
 <%= form_with(model: universidad, local: true) do |form| %>
   <% if universidad.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(universidad.errors.count, "error") %> Impidio que se guardara esta universidad:</h2>
+      <h2><%= pluralize(universidad.errors.count, "errores") %> impidió que se guardara esta universidad:</h2>
 
       <ul>
       <% universidad.errors.full_messages.each do |message| %>
@@ -29,6 +29,6 @@
   <br>
 
   <div class="actions">
-    <%= form.submit class: "btn btn-primary"%>
+    <%= form.submit "Procesar Universidad", class: "btn btn-primary"%>
   </div>
 <% end %>

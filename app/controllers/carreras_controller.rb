@@ -29,7 +29,7 @@ class CarrerasController < ApplicationController
 
     respond_to do |format|
       if @carrera.save
-        format.html { redirect_to @carrera, notice: 'Carrera was successfully created.' }
+        format.html { redirect_to @carrera, notice: 'Carrera creada con éxito.' }
         format.json { render :show, status: :created, location: @carrera }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class CarrerasController < ApplicationController
   def update
     respond_to do |format|
       if @carrera.update(carrera_params)
-        format.html { redirect_to @carrera, notice: 'Carrera was successfully updated.' }
+        format.html { redirect_to @carrera, notice: 'Carrera editada con éxito.' }
         format.json { render :show, status: :ok, location: @carrera }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class CarrerasController < ApplicationController
   def destroy
     @carrera.destroy
     respond_to do |format|
-      format.html { redirect_to carreras_url, notice: 'Carrera was successfully destroyed.' }
+      format.html { redirect_to carreras_url, notice: 'Carrera eliminada con éxito.' }
       format.json { head :no_content }
     end
   end

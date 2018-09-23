@@ -14,18 +14,6 @@
   <%= image_tag(@universidad.logo_url, width: 150) if @universidad.logo.present? %>
 </p>
 
-<div class="btn-group">
-  <button type="button" id='ver_select_button_id' class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Ver <span class="caret"></span>
-  </button>
-  <ul id='ver_select_list_id' class="dropdown-menu">
-    <li><a>Carreras</a></li>
-    <li><a>Pensums</a></li>
-    <li><a>Asignaturas</a></li>    
-  </ul>
-</div>
-
-
 <%= link_to 'Editar', edit_universidad_path(@universidad) %> |
 <%= link_to 'Volver', universidads_path %>
 

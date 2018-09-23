@@ -18,9 +18,8 @@
   <thead id='carreras_table_head_id'>
     <tr>
       <th><%= sort_link @search, :nombre, "Nombre" %></th>
-      <th><%= sort_link @search, :universidad_id, "Universidad" %></th>
-      <th>Pensums</th>
-      <th colspan="3"></th>
+      <th><%= sort_link @search, :universidad_id, "Universidad" %></th>      
+      <th colspan="3">Acciones</th>
     </tr>
   </thead>
 
@@ -28,11 +27,10 @@
     <% @carreras.each do |carrera| %>
       <tr>
         <td><%= carrera.nombre %></td>
-        <td><%= carrera.universidad.nombre %></td>
-        <td><button type="button" class="btn btn-primary">Ver Pensums</button></td>
-        <td><%= link_to 'Show', carrera %></td>
-        <td><%= link_to 'Edit', edit_carrera_path(carrera) %></td>
-        <td><%= link_to 'Destroy', carrera, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= carrera.universidad.descripcion %> (<%= carrera.universidad.nombre %>)</td>
+        <td><%= link_to 'Ver', carrera %></td>
+        <td><%= link_to 'Editar', edit_carrera_path(carrera) %></td>
+        <td><%= link_to 'Eliminar', carrera, method: :delete, data: { confirm: '¿Está Seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -40,4 +38,4 @@
 
 <br>
 
-<%= link_to 'New Carrera', new_carrera_path %>
+<%= link_to 'Nueva Carrera', new_carrera_path %>
