@@ -29,7 +29,7 @@ class PensumsController < ApplicationController
 
     respond_to do |format|
       if @pensum.save
-        format.html { redirect_to @pensum, notice: 'Pensum was successfully created.' }
+        format.html { redirect_to @pensum, notice: 'Pensum creado con éxito.' }
         format.json { render :show, status: :created, location: @pensum }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class PensumsController < ApplicationController
   def update
     respond_to do |format|
       if @pensum.update(pensum_params)
-        format.html { redirect_to @pensum, notice: 'Pensum was successfully updated.' }
+        format.html { redirect_to @pensum, notice: 'Pensum actualizado con éxito.' }
         format.json { render :show, status: :ok, location: @pensum }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class PensumsController < ApplicationController
   def destroy
     @pensum.destroy
     respond_to do |format|
-      format.html { redirect_to pensums_url, notice: 'Pensum was successfully destroyed.' }
+      format.html { redirect_to pensums_url, notice: 'Pensum eliminado con éxito.' }
       format.json { head :no_content }
     end
   end

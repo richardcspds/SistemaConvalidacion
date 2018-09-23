@@ -8,7 +8,7 @@
       <th>Matricula</th>
       <th>Correo</th>
       <th>Telefono</th>
-      <th colspan="2">Acciones</th>
+      <th colspan="3">Acciones</th>
     </tr>
   </thead>
 
@@ -22,6 +22,7 @@
         <td><%= estudiante.telefono %></td>
         <td><%= link_to 'Ver', estudiante %></td>
         <td><%= link_to 'Editar', edit_estudiante_path(estudiante) %></td>
+        <td><%= link_to 'Eliminar', estudiante, method: :delete, data: { confirm: '¿Está Seguro?' } %></td>
       </tr>
     <% end %>
   </tbody>
